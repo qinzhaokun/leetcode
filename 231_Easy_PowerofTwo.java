@@ -15,5 +15,8 @@ public class Solution {
             num = num << 1;
         }
         return false;
+        
+        //another solution
+        //return n > 0 && ((n & (n - 1)) == 0 ); 
     }
 }
