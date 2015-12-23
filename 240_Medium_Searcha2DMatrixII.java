@@ -19,6 +19,7 @@ Given target = 5, return true.
 Given target = 20, return false.
 */
 
+//Solution one
 public class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
         int n = matrix.length;
@@ -47,5 +48,27 @@ public class Solution {
         else{
             return find(m,target,midI+1,endI,midJ+1,endJ) || find(m,target,midI+1,endI,startJ,midJ) || find(m,target,startI,midI,midJ+1,endJ);
         }
+    }
+}
+
+//Solution two
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
+            return false;
+        }
+        int i = 0;int j = matrix[0].length-1;
+        while(i < matrix.length && j >= 0){
+            if(matrix[i][j] == target){
+                return true;
+            }
+            else if(matrix[i][j] > target){
+                j--;
+            }
+            else{
+                i++;
+            }
+        }
+        return false;
     }
 }
