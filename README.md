@@ -66,3 +66,5 @@
 274_Medium:H-Index.第一种比较笨的方法是先排序，然后再找。第二种是利用桶排序。桶的长度为len+1,题目要求最大的h，使得h个citation的值都大于等于h。虽然我没想到，但是应该很容易想到桶排序，h最大值为len,对于桶i(0<=i<len),统计citation==i 的个数，最后一个桶统计citation>=len的个数，然后从后往前遍历，total为citations的累加，当首次出现total>=i时，返回i.
 
 275_Medium:H-Index II .当274中数组是升序时，用二分查找加速，时间复杂度为O(logn)。
+
+278_Easy: First Bad Version. 二分查找，注意两个陷阱，1：取中值的时候要用i+(j-i)/2,如果用(i+j)/2可能会Integer溢出。2：起点，如果设置i=1的话，如果全是换版本，则会出错，可以从i=0开始，或者在循环前面判断 1 version是否bad。
