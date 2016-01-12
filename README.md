@@ -1,4 +1,6 @@
 #leetcode
+001_Medium: Two Sum.利用哈希表（在O(1)时间复杂度内查找某个元素）。遍历数组，查找map里是否containsKey(target-nums[i])，如果则返回，否则将nums[i]放入map中(map.put(nums[i],i)。
+
 010_Hard:Regular Expression Matching. 比较难想到的一道dp。注意的是*表示前一个字符可以重复n次(n>=0)。大部分注释已经写在代码中，其中比较难理解的就是当 p(j)=='*'时，分两种情况，1：p(j)前一个字符重复0次，则是a[i+1][j-1] ; 2： p(j)前一个字符重复大于等于1次，设x=p(j)，则p可以变成...x*x,后一个x表示至少一次，前面的x*又可以表示重复n次(n>=0)，递归的过程。则a[i][j+1] && (s(i) == x || x == '.')。这是本题目的精妙之处。
 
 138_Hard: Copy List with Random Pointer。深复制特别链表。第一次遍历，对于米一个节点cur，复制出cur1插入到cur后；第二次遍历，处理每个cur1中的random的指向，用：
