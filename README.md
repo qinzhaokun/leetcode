@@ -9,6 +9,19 @@
 
 > false;设置a[s.charAt(i)-' ']=true,前指针前进。
 
+005_Mesium:最长回文。用简单的二维DP，isPa[i][j]表示s.substring(i,j+1)是否是回文，isPa[i][i]=true,递推式如下：
+
+    isPa[i][j] = s.charAt(i) == s.charAt(j) && (i+1 >= j-1 || isPa[i+1][j-1])
+    
+006_Easy:ZigZag.参考dicuss，用二维stringBuffer存储，具体见代码。
+
+007_Easy: 反转整数，注意负号和Integer的溢出，反转公式如下：
+
+    while(x != 0){
+    re = (re*10 + x%10);
+    x /= 10;
+    }
+    
 010_Hard:Regular Expression Matching. 比较难想到的一道dp。注意的是*表示前一个字符可以重复n次(n>=0)。大部分注释已经写在代码中，其中比较难理解的就是当 p(j)=='*'时，分两种情况，1：p(j)前一个字符重复0次，则是a[i+1][j-1] ; 2： p(j)前一个字符重复大于等于1次，设x=p(j)，则p可以变成...x*x,后一个x表示至少一次，前面的x*又可以表示重复n次(n>=0)，递归的过程。则a[i][j+1] && (s(i) == x || x == '.')。这是本题目的精妙之处。
 
 138_Hard: Copy List with Random Pointer。深复制特别链表。第一次遍历，对于米一个节点cur，复制出cur1插入到cur后；第二次遍历，处理每个cur1中的random的指向，用：
