@@ -92,7 +92,7 @@
 
 275_Medium:H-Index II .当274中数组是升序时，用二分查找加速，时间复杂度为O(logn)。
 
-278_Easy: First Bad Version. 二分查找，注意两个陷阱，1：取中值的时候要用i+(j-i)/2,如果用(i+j)/2可能会Integer溢出。2：起点，如果设置i=1的话，如果全是换版本，则会出错，可以从i=0开始，或者在循环前面判断 1 version是否bad。.
+278_Easy: First Bad Version. 二分查找，注意两个陷阱，1：取中值的时候要用i+(j-i)/2,如果用(i+j)/2可能会Integer溢出。2：起点，如果设置i=1的话，如果全是换版本，则会出错，可以从i=0开始，或者在循环前面判断 1 version是否bad。..
 
 279_Medium: Perfect Squares。动态规划题。设置一位数组dp,dp[i]表示i最小能够用多少个数字表示。则dp[i]和dp[0]...dp[i-1]，存在如下关系：
 
