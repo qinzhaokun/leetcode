@@ -137,3 +137,14 @@ Of course, we also need to take the sign into considerations, which is relativel
 我们截出的数字不能包含0001这种前面有0的数字，但是一个0是可以的。这里一旦截出的数字前导为0，就可以return了，因为说明前面就截的不对，从这之后都是开始为0的，后面也不可能了。
 
 283_Easy: 把数组的0移到末尾，其他元素相对位置不变。类似快排。双指针，i从0遍历nums.length-1,当遍历到i时，使得[0...pos-1]为非0数，[pos...i]为0。当nums[i]!=0，交换nums[pos],nums[i],pos++.
+
+289_Medium: Game of Life。重点就是建立4种状态，分别是：
+
+> 0: 死--〉死
+〉1: 活--〉死
+〉10: 死--〉活
+> 11: 活--> 活
+
+这样表示的好处是低位表示原来的状态，高位表示下一次的状态。
+
+290_Easy: Word Pattern. 这题要求一对一的匹配，我用了两个HashMap完成的。
