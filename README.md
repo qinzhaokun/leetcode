@@ -141,8 +141,11 @@ Of course, we also need to take the sign into considerations, which is relativel
 289_Medium: Game of Life。重点就是建立4种状态，分别是：
 
 > 0: 死--〉死
-〉1: 活--〉死
-〉10: 死--〉活
+
+> 1: 活--〉死
+
+> 10: 死--〉活
+
 > 11: 活--> 活
 
 这样表示的好处是低位表示原来的状态，高位表示下一次的状态。
