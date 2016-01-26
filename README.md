@@ -138,6 +138,8 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 283_Easy: 把数组的0移到末尾，其他元素相对位置不变。类似快排。双指针，i从0遍历nums.length-1,当遍历到i时，使得[0...pos-1]为非0数，[pos...i]为0。当nums[i]!=0，交换nums[pos],nums[i],pos++.
 
+284_Medium: Peeking Iterator。设置缓存和标志位。
+
 289_Medium: Game of Life。重点就是建立4种状态，分别是：
 
 > 0: 死--〉死
