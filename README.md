@@ -1,7 +1,7 @@
 #leetcode
 001_Medium: Two Sum.利用哈希表（在O(1)时间复杂度内查找某个元素）。遍历数组，查找map里是否containsKey(target-nums[i])，如果则返回，否则将nums[i]放入map中(map.put(nums[i],i)。
 
-002_Medium: Add Two Numbers。 用链表存储的两个数相加，逐位相加，记得进位。
+002_Medium: Add Two Numbers。 用链表存储的两个数相加，逐位相加，记得进位。。
 
 003_Medium: Longest Substring Without Repeating Characters. 最长无重复字串。运用滑动窗口法，也可运行HashMap. 设置数组a(长度大于ASCII个数)，ASCII第一位是' '。双指针遍历数组，移动前指针，判断a[s.charAt-' ']的值：
 
