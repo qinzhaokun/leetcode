@@ -59,6 +59,14 @@ We should also consider the edge case, that is, when should we stop?
 
 010_Hard:Regular Expression Matching. 比较难想到的一道dp。注意的是*表示前一个字符可以重复n次(n>=0)。大部分注释已经写在代码中，其中比较难理解的就是当 p(j)=='*'时，分两种情况，1：p(j)前一个字符重复0次，则是a[i+1][j-1] ; 2： p(j)前一个字符重复大于等于1次，设x=p(j)，则p可以变成...x*x,后一个x表示至少一次，前面的x*又可以表示重复n次(n>=0)，递归的过程。则a[i][j+1] && (s(i) == x || x == '.')。这是本题目的精妙之处。
 
+011_Medium:Container With Most Water. 假设使得体积最大的两处分别为i和j(i<j)，那么根据反证法能够证明在i的左边的值都比height[i]小，而在j的右边的值都比height[j]小，所以可以设置两个指针，不断向中间靠拢来寻找最大值。
+
+012_Medium:Integer to Roman. 数字装成罗马数字，依稀记得这是ebay的电面题。设置String [] a = {"I","V","X","L","C","D","M"};每次去int数字的最后一位，判断是0——9的哪一个，分别用a[i],a[i+1],a[i+2]的组合表示，然后i+=2继续处理下一位。
+
+013_Easy:Roman to Integer. 罗马数字转数字。遇到一个字符，加上这个字符对应的数字，但是要注意有些情况是要减的，比如遇到‘I’，要判断下一位，如果是‘V’或者‘X’的话就要减，其余情况则+1。
+
+014_Easy:Longest Common Prefix.省略
+
 029_Medium: Divide Two Integers.In this problem, we are asked to divide two integers. However, we are not allowed to use division, multiplication and mod operations. So, what else can we use? Yeah, bit manipulations.
 
 Let's do an example and see how bit manipulations work.
