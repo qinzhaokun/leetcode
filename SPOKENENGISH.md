@@ -17,3 +17,7 @@ recursive, recurtion
 time efficiency and space efficiency
 
 initial [ɪˈnɪʃl]
+
+eage case
+
+disjoint set 并查集
