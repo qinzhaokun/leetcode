@@ -67,6 +67,18 @@ We should also consider the edge case, that is, when should we stop?
 
 014_Easy:Longest Common Prefix.省略
 
+015_Medium: 3Sum.给定数组，求所有任意三个数相加等于0的组合。先排序，用O(nlogn)的时间，在固定某一位，用双指针查找另外两个数，这部分的复杂度是O(n^2)。
+
+016_Medium:3Sum Closest. 类似上题。
+
+017_Medium:Letter Combinations of a Phone Number. 典型dfs.
+
+018_Easy: 4Sum. 类似015，只是每次要固定2个数，时间复杂度是O(n^3)
+
+019_Easy: Remove Nth Node From End of List. 移除倒数第N个节点。第一个节点先走N步，然后，另一个指针指向头部，同时移动两个指针，找到倒数第N个节点的前一个节点，用pre.next = pre.next.next移除。
+
+020_Easy: Valid Parentheses. 判断括号组合的合法性。栈的典型应用。
+
 029_Medium: Divide Two Integers.In this problem, we are asked to divide two integers. However, we are not allowed to use division, multiplication and mod operations. So, what else can we use? Yeah, bit manipulations.
 
 Let's do an example and see how bit manipulations work.
