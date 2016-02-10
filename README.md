@@ -252,3 +252,5 @@ Of course, we also need to take the sign into considerations, which is relativel
 2：剪枝步骤：这步对算法性能有很大的提高，第一个是当right+1>left时，肯定不合法，所以只能remove掉这个);第二是当已找到的org和待搜索的now的总长度加起来比已找到最长的有效字符还短时，此时表示以此递归不可能找到合法解，因此要return.
 
 BFS:看的标准答案。大意是，从最长的找到最短的，把原始字符串放到队列中。当每次队列不为空，取出一个，判断是否合法，合法的话添加到结果集，否则，移除该串的每一个字符，放到队列中。其实算法还能更快，如果在判断合法时再加上基于长度的剪枝。
+
+303_Easy： Range Sum Query - Immutable.给定数组，要求查询任意两点之间和和。init复杂度O(n),用sums数组，sums[i]存储nums[0]到nums[i]的和；query复杂度O(1)，返回sums[j]-sums[i-1]。
