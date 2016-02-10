@@ -79,6 +79,10 @@ We should also consider the edge case, that is, when should we stop?
 
 020_Easy: Valid Parentheses. 判断括号组合的合法性。栈的典型应用。
 
+021_Easy: Merge Two Sorted Lists. 归并排序的基本原理。
+
+022_Medium:Generate Parentheses. dfs+剪枝。递归生成添加左右，当l==n表示后面只能添加")"了，当l>r表示下一个可以是"("也可以是")"，l<=r表示下一个只能是"("。
+
 029_Medium: Divide Two Integers.In this problem, we are asked to divide two integers. However, we are not allowed to use division, multiplication and mod operations. So, what else can we use? Yeah, bit manipulations.
 
 Let's do an example and see how bit manipulations work.
