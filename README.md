@@ -83,6 +83,8 @@ We should also consider the edge case, that is, when should we stop?
 
 022_Medium:Generate Parentheses. dfs+剪枝。递归生成添加左右，当l==n表示后面只能添加")"了，当l>r表示下一个可以是"("也可以是")"，l<=r表示下一个只能是"("。
 
+023_Hard: Merge k Sorted Lists. 归并排序在链表中的应用。
+
 029_Medium: Divide Two Integers.In this problem, we are asked to divide two integers. However, we are not allowed to use division, multiplication and mod operations. So, what else can we use? Yeah, bit manipulations.
 
 Let's do an example and see how bit manipulations work.
@@ -104,6 +106,14 @@ dividend = INT_MIN and divisor = -1 (because abs(INT_MIN) = INT_MAX + 1).
 Of course, we also need to take the sign into considerations, which is relatively easy.
 
 简单来说，不断的去减去被除数，知道除数小于被除数，但是这样会超时，所以用*2的方法，每一次都把被除数*2后再用除数减，发现减不了了再从原始除数开始，知道最后的除数小于被除数。
+
+033_Hard: Search in Rotated Sorted Array.二分查找。比如一个例子，4 5 6 7 0 1 2。每次取mid=l+(r-l)/2。
+
+> nums[l]<nums[r]，正常二分查找。
+
+> nums[mid]<nums[r], 如数组中的nums[mid] == 1。这是判断如果nums[mid]<target<=nums[r],则l=mid+1，否则r=mid-1。
+
+> nums[mid]>=nums[r], 如数组中的nums[mid] == 6。这时判断如果nums[l]<=target<nums[mid],则r=mid-1，否则l=mid+1。
 
 043_Medium: Multiply Strings.两个数相乘，如果按照乘法模拟运算的话比较复杂，注意技巧就是建立个n1+n2长度的数组存结果，然后倒数第i位数字乘以倒数第j位数字乘的结果是保存在数组i+j位，最后再统一进位，详见代码。
 
