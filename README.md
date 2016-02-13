@@ -85,6 +85,10 @@ We should also consider the edge case, that is, when should we stop?
 
 023_Hard: Merge k Sorted Lists. 归并排序在链表中的应用。
 
+024_Medium:Swap Nodes in Pairs. 链表中每两个一组交换，考察链表的操作。
+
+025_Hard: Reverse Nodes in k-Group。每k个一组进行反转。注意边界,细节等处理就行。
+
 029_Medium: Divide Two Integers.In this problem, we are asked to divide two integers. However, we are not allowed to use division, multiplication and mod operations. So, what else can we use? Yeah, bit manipulations.
 
 Let's do an example and see how bit manipulations work.
