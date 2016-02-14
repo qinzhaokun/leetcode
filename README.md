@@ -89,6 +89,12 @@ We should also consider the edge case, that is, when should we stop?
 
 025_Hard: Reverse Nodes in k-Group。每k个一组进行反转。注意边界,细节等处理就行。
 
+026_Easy: Remove Duplicates from Sorted Array. 移除已排序数组中的重复元素。这题用双指针思想，用i遍历数组，j在0到i之间，满足[0...j-1]不重复，而[j...i]的元素是需要被移除的，由于是已排序的[0...j-1]的，所以每次遍历到i，比较nums[j-1]和nums[i]是否相等，相等表示nums[i]是重复的，不操作；不相等表示nums[i]不是重复的，进行nums[j++]=nums[i]操作，即把nums[i]放到nums[j]的位置，并j++。
+
+027_Easy: Remove Element. 移除数组中的指定元素，和上题一样，利用双指针。
+
+28_Easy: Implement strStr(). 1：暴力法。2：KMP算法，没有彻底研究明白，有空继续研究那个next数组的生成。[http://www.cnblogs.com/c-cloud/p/3224788.html]
+
 029_Medium: Divide Two Integers.In this problem, we are asked to divide two integers. However, we are not allowed to use division, multiplication and mod operations. So, what else can we use? Yeah, bit manipulations.
 
 Let's do an example and see how bit manipulations work.
