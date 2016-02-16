@@ -241,7 +241,7 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 因为要解决上述几种情况，我们需要这么几个变量，一个是记录上次的计算结果currRes，一个是记录上次被加或者被减的数prevNum，一个是当前准备处理的数currNum。当下一轮搜索是加减法时，prevNum就是简单换成currNum，当下一轮搜索是乘法时，prevNum是prevNum乘以currNum。
 
-注意
+注意：
 
 第一次搜索不添加运算符，只添加数字，就不会出现+1+2这种表达式了。
 我们截出的数字不能包含0001这种前面有0的数字，但是一个0是可以的。这里一旦截出的数字前导为0，就可以return了，因为说明前面就截的不对，从这之后都是开始为0的，后面也不可能了。
