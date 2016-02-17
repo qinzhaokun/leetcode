@@ -93,7 +93,7 @@ We should also consider the edge case, that is, when should we stop?
 
 027_Easy: Remove Element. 移除数组中的指定元素，和上题一样，利用双指针。
 
-28_Easy: Implement strStr(). 1：暴力法。2：KMP算法，没有彻底研究明白，有空继续研究那个next数组的生成。[http://www.cnblogs.com/c-cloud/p/3224788.html]
+028_Easy: Implement strStr(). 1：暴力法。2：KMP算法，没有彻底研究明白，有空继续研究那个next数组的生成。[http://www.cnblogs.com/c-cloud/p/3224788.html]
 
 029_Medium: Divide Two Integers.In this problem, we are asked to divide two integers. However, we are not allowed to use division, multiplication and mod operations. So, what else can we use? Yeah, bit manipulations.
 
@@ -159,6 +159,10 @@ Of course, we also need to take the sign into considerations, which is relativel
 其实这个做法就是把数组中的每个元素都作为矩形高度，计算了一遍该高度下矩形的最大面积。只是每次都贪心最大，避免了重复计算，所以效率高。
 
 再遍历一次，即可求出所有的柱子可以形成的最大的矩形面积。为了减少边界的判断，可以使用哨兵，在两端添加两个柱子高度都为-1.
+
+136_Medium: Single Number.给出一个数组，其中一个数只出现一次，其他的数出现两次，找到只出现一次的那个数。思路：考虑位运算，异或操作，两个相同的数异或等于0，0和任何数异或都等于它本身。因此，把数组所有数都异或一遍，结果就是出现一次的数。
+
+137_Medium: Single Number II. 给出一个数组，其中一个数只出现一次，其他的数只出现3次，找出只出现一次的那个数。思路：一看和上一题很像，但是3是even，采用异或操作不等于0，所以不能用上面的思路，这题比上题更普遍，把每个数字分解为32位，把数组的所有数每一位分别相加，那么会出现什么情况？如果不加那个只出现一次的数，那么每一位上都是3的倍数，因此，只要在每一位上对3取余，就是只出现一次的那个数的二进制形式。
 
 138_Hard: Copy List with Random Pointer。深复制特别链表。第一次遍历，对于米一个节点cur，复制出cur1插入到cur后；第二次遍历，处理每个cur1中的random的指向，用：
 
