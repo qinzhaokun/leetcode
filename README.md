@@ -117,6 +117,12 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 简单来说，不断的去减去被除数，知道除数小于被除数，但是这样会超时，所以用*2的方法，每一次都把被除数*2后再用除数减，发现减不了了再从原始除数开始，知道最后的除数小于被除数。
 
+030_Hard: Substring with Concatenation of All Words. 双指针高阶应用，注意题目要求，一开始用dfs虽然能做出来但是会超时。题目说words中每个word长度相等，因此遍历时每次跳跃word.length()步即可。两个循环：
+
+> 外层循环：为什么外层循环只要循环单词长度就行？其实这里就是从一个元素出发，然后我们会对固定长度的单词依次扫过去，既然这样，那么只需要扫单位长度次就够了，举个例子可能比较好理解，比如abcdefghijklmn, 长度是3， 那么从a出发，我们会扫abc, def,ghi,jkl, 接下来从b出发，是bcd,efg,hij,klm,然后是从c出发，是cde, fgh, ijk, lmn. 如果接下来继续，从d出发，是def,ghi,jkl,可以发现扫a的时候已经判断过这些单词了~ 所以就不需要再跑一次了哈~
+
+> 内层循环：固定left，依次找s.substring(left,left+len),s.substring(left+len,left+2*len)...,当发现某个子串如s.substring(left+k*len,left+(k+1)*len),不在words里时，要重置count=0;left = left+(k+1)*len);curMap.clear();这三项，表示要充头开始找；重点来了，和双指针应用一样，当发现子串s.substring(left+k*len,left+(k+1)*len)超过已找到的个数时，即当前窗口一旦出现重复某个单词的次数超出指定的个数，移动左窗口，直到该窗口中对应的字符串不在重复超过指定次数。
+
 033_Hard: Search in Rotated Sorted Array.二分查找。比如一个例子，4 5 6 7 0 1 2。每次取mid=l+(r-l)/2。
 
 > nums[l]<nums[r]，正常二分查找。
