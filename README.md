@@ -133,6 +133,12 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 043_Medium: Multiply Strings.两个数相乘，如果按照乘法模拟运算的话比较复杂，注意技巧就是建立个n1+n2长度的数组存结果，然后倒数第i位数字乘以倒数第j位数字乘的结果是保存在数组i+j位，最后再统一进位，详见代码。
 
+045_Hard: Jump Game II. 一个数组，每个数字表示能够向前跳跃的最大距离。用dp能够在O(n^2)的时间复杂度解决，但是需要更快的方法。思路是一种类似bfs的思想，特殊情况处理好之后，设置两个指针last,cur，表示,一开始last=cur=nums[0]，step = 1,表示走一步的范围是0~last，然后让i从1遍历到last,1<=i<=last，这其中如果有i+nums[i]能够到达n-1的话，马上返回step+1,期间也不能更新最远的cur；当i>last时，表示i之后都无法step步走到，所以step++,并把last=cur，其中旧的last和新的last之间的位置是新的step步才能到达的，而此时的last表示step步最远能够到达的位置。说的不太清楚，附上官网最hot的分析：
+
+I try to change this problem to a BFS problem, where nodes in level i are all the nodes that can be reached in i-1th jump. for example. 2 3 1 1 4 , is 2|| 3 1|| 1 4 ||
+
+clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
+
 046_Medium_Permutations：生成数组全排列。递归遍历数组，每一次对于nums[i],分别于nums[i]...nums[n-1]进行交换，递归下去，出来之后记得回溯，就是递归结束后要交换回来。
 
 047_Medium：PermutationsII：生成不重复的全排列。大体思路和上题一样，唯一不同的是，在nums[i]与它后面的元素交换时，不能重复交换，如1,3,4,4,3,2这个数组，i==1时,3之和j==1,j==2,j==5这三个交换。
