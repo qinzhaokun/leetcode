@@ -123,6 +123,16 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 > 内层循环：固定left，依次找s.substring(left,left+len),s.substring(left+len,left+2*len)...,当发现某个子串如s.substring(left+k*len,left+(k+1)*len),不在words里时，要重置count=0;left = left+(k+1)*len);curMap.clear();这三项，表示要充头开始找；重点来了，和双指针应用一样，当发现子串s.substring(left+k*len,left+(k+1)*len)超过已找到的个数时，即当前窗口一旦出现重复某个单词的次数超出指定的个数，移动左窗口，直到该窗口中对应的字符串不在重复超过指定次数。
 
+032_Medium:Next permutation. 找到全排列的下一个组合。网上的思路：
+
+> Start from its last element, traverse backward to find the first one with index i that satisfy num[i-1] < num[i]. So, elements from num[i] to num[n-1] is reversely sorted.
+
+> To find the next permutation, we have to swap some numbers at different positions, to minimize the increased amount, we have to make the highest changed position as high as possible. Notice that index larger than or equal to i is not possible as num[i,n-1] is reversely sorted. So, we want to increase the number at index i-1, clearly, swap it with the smallest number between num[i,n-1] that is larger than num[i-1]. For example, original number is 121543321, we want to swap the '1' at position 2 with '2' at position 7.
+
+> The last step is to make the remaining higher position part as small as possible, we just have to reversely sort the num[i,n-1]
+
+总结一下：找到下一个排序更大的组合，首先从后往前找，直到出现降序的（如果从后往前是升序，则表示是最大的，如4，3，2，1）,找到第一个降序的位置nums[i] < nums[i+1]，这里表示[i+1...n-1]是降序了，在这里我们从[i+1...n-1]中找到大于nums[i]的最小元素和nums[i]交换，然后把[i+1...n-1]反转，表示[i+1...n-1]这部分变成最小了。
+
 033_Hard: Search in Rotated Sorted Array.二分查找。比如一个例子，4 5 6 7 0 1 2。每次取mid=l+(r-l)/2。
 
 > nums[l]<nums[r]，正常二分查找。
