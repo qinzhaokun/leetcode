@@ -123,7 +123,7 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 > 内层循环：固定left，依次找s.substring(left,left+len),s.substring(left+len,left+2*len)...,当发现某个子串如s.substring(left+k*len,left+(k+1)*len),不在words里时，要重置count=0;left = left+(k+1)*len);curMap.clear();这三项，表示要充头开始找；重点来了，和双指针应用一样，当发现子串s.substring(left+k*len,left+(k+1)*len)超过已找到的个数时，即当前窗口一旦出现重复某个单词的次数超出指定的个数，移动左窗口，直到该窗口中对应的字符串不在重复超过指定次数。
 
-032_Medium:Next permutation. 找到全排列的下一个组合。网上的思路：
+031_Medium:Next permutation. 找到全排列的下一个组合。网上的思路：
 
 > Start from its last element, traverse backward to find the first one with index i that satisfy num[i-1] < num[i]. So, elements from num[i] to num[n-1] is reversely sorted.
 
@@ -132,6 +132,15 @@ Of course, we also need to take the sign into considerations, which is relativel
 > The last step is to make the remaining higher position part as small as possible, we just have to reversely sort the num[i,n-1]
 
 总结一下：找到下一个排序更大的组合，首先从后往前找，直到出现降序的（如果从后往前是升序，则表示是最大的，如4，3，2，1）,找到第一个降序的位置nums[i] < nums[i+1]，这里表示[i+1...n-1]是降序了，在这里我们从[i+1...n-1]中找到大于nums[i]的最小元素和nums[i]交换，然后把[i+1...n-1]反转，表示[i+1...n-1]这部分变成最小了。
+
+032_Hard:Longest Valid Parentheses.题意是给定一个只含有(和)的字符串，找到最长的合法的长度。这题有三种方法，分别是栈，数组标记（自己起的名字）和逆向动态规划法。下面分别介绍思路：
+
+> 1:类似递增栈那一类题，stack存储上一个没匹配括号的index，遍历每个字符，发现栈顶的元素可以匹配当前括号，即为一对，否则再把当前括号入栈，作为未匹配的上一个index，以此类推。更新的时候如果stack为空，那么从头至尾所有的括号都匹配上，否则有效长度仅限i-stack.peek()。
+
+> 2:用一个bool数组来标记已经匹配过的字符，找到最长的连续标记的长度就是所求的结果。只要遍历两遍数组，时间复杂度为O(n)。
+
+> 3:dp[i]: 以i开头的最长valid parentheses有多长。1) 如果(str[i] == ‘)’)，以右括号开头必定invalid，dp[i] = 0；2) (str[i] == ‘(‘)，以左括号开头,我们想看对应的有木有右括号。因为dp[i + 1]代表的sequence肯定是左括号开头右括号结尾，所以我们想catch((…))这种情况。j = i + 1 + d[i + 1]，正好就是str[i]后面越过完整sequence的下一个，若是右括号，d[i] = 2 + d[i + 1]. 除此之外，还有包起来后因为把后面的右括号用了而导致跟再往后也连起来了的情况，如((..))()()()。所以d[i]还要再加上j后面那一段的d[j + 1]
+这个定义和最长公共字串那题的定义类似，都是“以某个固定位置开始/结束”。看两头的方式又像palindrome。从后往前的一维dp也不常见。挺好玩的，一下复习好多东西。
 
 033_Hard: Search in Rotated Sorted Array.二分查找。比如一个例子，4 5 6 7 0 1 2。每次取mid=l+(r-l)/2。
 
