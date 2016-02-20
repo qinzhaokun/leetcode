@@ -150,6 +150,12 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 > nums[mid]>=nums[r], 如数组中的nums[mid] == 6。这时判断如果nums[l]<=target<nums[mid],则r=mid-1，否则l=mid+1。
 
+034_Medium: Search for a Range. 给定一个已经排序的数组和一个数字，找到这个数字在数组的位置区间，要求O(logn)。两种方法:
+
+1):用两次二分查找，分别查找左边界和右边界，巧妙运行了当target==nums[mid]时该怎么移动。当寻找左边界时，如果target<=nums[mid]时，令j=mid,确保左边界还在搜索区间内，否则i = mid+1;当寻找右边界时，要注意的是，如果while(i<j)这样的话，如果j-i==1的话，出现i==mid时会造成死循环，所以应该令mid=i+(j-i)/2+1，向右偏一个，如果target>=nums[mid]时，令i = mid，使得右边界仍然在搜索区间，否则j = mid-1;
+
+2): 思路差不多，先用二分查找找到第一个target == nums[mid], 然后在用两个二分区搜[i,mid]的左边界和[j,mid]的右边界。
+
 043_Medium: Multiply Strings.两个数相乘，如果按照乘法模拟运算的话比较复杂，注意技巧就是建立个n1+n2长度的数组存结果，然后倒数第i位数字乘以倒数第j位数字乘的结果是保存在数组i+j位，最后再统一进位，详见代码。
 
 045_Hard: Jump Game II. 一个数组，每个数字表示能够向前跳跃的最大距离。用dp能够在O(n^2)的时间复杂度解决，但是需要更快的方法。思路是一种类似bfs的思想，特殊情况处理好之后，设置两个指针last,cur，表示,一开始last=cur=nums[0]，step = 1,表示走一步的范围是0~last，然后让i从1遍历到last,1<=i<=last，这其中如果有i+nums[i]能够到达n-1的话，马上返回step+1,期间也不能更新最远的cur；当i>last时，表示i之后都无法step步走到，所以step++,并把last=cur，其中旧的last和新的last之间的位置是新的step步才能到达的，而此时的last表示step步最远能够到达的位置。说的不太清楚，附上官网最hot的分析：
