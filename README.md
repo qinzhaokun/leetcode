@@ -156,6 +156,14 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 2): 思路差不多，先用二分查找找到第一个target == nums[mid], 然后在用两个二分区搜[i,mid]的左边界和[j,mid]的右边界。
 
+035_Medium: Search Insert Position. 找一个有序数组中找到给定数字的下表，找不到的话返回这个数字插入到该数组对应位置的下标。思路：基本的二分搜索，注意，当target>nums[length-1]是，直接返回length。
+
+036_Easy: Valid Sudoku. 判断数独是否合法。按照数独规则判断即可。
+
+037_Hard: Sudoku Solver. 解数独。这题是唯一没有自己写的，觉得很麻烦，方法是暴利回溯。
+
+038_Easy: Count and Say. 从1开始，对这个字符窜计数并说。理解题目之后简单的遍历统计即可，值得一提的是，用String会超时，要用StringBuilder tmp = new StringBuilder() --> tmp.append(t) --> tmp.toString()
+
 043_Medium: Multiply Strings.两个数相乘，如果按照乘法模拟运算的话比较复杂，注意技巧就是建立个n1+n2长度的数组存结果，然后倒数第i位数字乘以倒数第j位数字乘的结果是保存在数组i+j位，最后再统一进位，详见代码。
 
 045_Hard: Jump Game II. 一个数组，每个数字表示能够向前跳跃的最大距离。用dp能够在O(n^2)的时间复杂度解决，但是需要更快的方法。思路是一种类似bfs的思想，特殊情况处理好之后，设置两个指针last,cur，表示,一开始last=cur=nums[0]，step = 1,表示走一步的范围是0~last，然后让i从1遍历到last,1<=i<=last，这其中如果有i+nums[i]能够到达n-1的话，马上返回step+1,期间也不能更新最远的cur；当i>last时，表示i之后都无法step步走到，所以step++,并把last=cur，其中旧的last和新的last之间的位置是新的step步才能到达的，而此时的last表示step步最远能够到达的位置。说的不太清楚，附上官网最hot的分析：
