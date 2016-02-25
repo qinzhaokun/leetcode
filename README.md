@@ -357,6 +357,8 @@ BFS:看的标准答案。大意是，从最长的找到最短的，把原始字�
 
 306_Mideum_Additive Number.典型dfs应用，一开始想用动态规划，但是想不出，不知道能不能做。在主函数枚举出前2个数，就是把字符串切割成三部分，扔进dfs函数中，如果如何马上返回true，否则继续dfs，什么时候需要dfs呢？ 例如这样(1,2,358)--?(2,3,58)-->(3,5,8)-->true。
 
+307_Medium:Range Sum Query-Mutable. 和303相似，多添加一个条件是会修改数组元素的。思路用线段树，线段树类有5个属性，分别是start,end,left,right,sum。根据数组创建线段树，更新元素，查找sum，详见代码。
+
 309_Medium_Best Time to Buy and Sell Stock with Cooldown. 题意是股票买卖，要求卖之后的下一天不能买。
 
 因为当前日期买卖股票会受到之前日期买卖股票行为的影响，首先考虑到用DP解决。
