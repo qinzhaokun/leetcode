@@ -359,6 +359,8 @@ BFS:看的标准答案。大意是，从最长的找到最短的，把原始字�
 
 307_Medium:Range Sum Query-Mutable. 和303相似，多添加一个条件是会修改数组元素的。思路用线段树，线段树类有5个属性，分别是start,end,left,right,sum。根据数组创建线段树，更新元素，查找sum，详见代码。
 
+还有一种方法是树状数组（binary indexes tree），用a存原始数据，用e存a中某几位的和的数据，规律如下：e[i]（从1开始），i的二进制表示为例如100,在e[i]存以a[i]开始前2^x个数的和，x是末尾0的个数。对于一个i，用公式：i&(-i)计算它的lowbit，i+lowbit表示i的父亲节点，i-lowbit表示i的前驱节点，因此，更新时（i,val）,把e[i]+=val-nums[i],然后去更新它的父亲节点i+lowbit(i);超找时，返回e[i]+e[i-lowbit(i)]+.....迭代的找下去直到i==0. 
+
 309_Medium_Best Time to Buy and Sell Stock with Cooldown. 题意是股票买卖，要求卖之后的下一天不能买。
 
 因为当前日期买卖股票会受到之前日期买卖股票行为的影响，首先考虑到用DP解决。
