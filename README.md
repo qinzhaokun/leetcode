@@ -191,6 +191,8 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 这样会更快。
 
+041_Hard: First Missing Positive.给定一个数组，找到缺失的第一个正数。要求O(n)时间复杂度和O(1)空间复杂度。思路：遍历数组，把nums[i](如果1<=nums[i]<=nums.length)放在nums[i]-1的位置，如nums[i]=4,应该把其放到i=3的位置，具体为exchange num[i] and nums[nums[i]-1],i--,为了防止重复交换，当且仅当nums[nums[i]-1]这个数不满足nums[k]-1=k 这个性质时才执行。
+
 043_Medium: Multiply Strings.两个数相乘，如果按照乘法模拟运算的话比较复杂，注意技巧就是建立个n1+n2长度的数组存结果，然后倒数第i位数字乘以倒数第j位数字乘的结果是保存在数组i+j位，最后再统一进位，详见代码。
 
 045_Hard: Jump Game II. 一个数组，每个数字表示能够向前跳跃的最大距离。用dp能够在O(n^2)的时间复杂度解决，但是需要更快的方法。思路是一种类似bfs的思想，特殊情况处理好之后，设置两个指针last,cur，表示,一开始last=cur=nums[0]，step = 1,表示走一步的范围是0~last，然后让i从1遍历到last,1<=i<=last，这其中如果有i+nums[i]能够到达n-1的话，马上返回step+1,期间也不能更新最远的cur；当i>last时，表示i之后都无法step步走到，所以step++,并把last=cur，其中旧的last和新的last之间的位置是新的step步才能到达的，而此时的last表示step步最远能够到达的位置。说的不太清楚，附上官网最hot的分析：
