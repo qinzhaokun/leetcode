@@ -164,6 +164,33 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 038_Easy: Count and Say. 从1开始，对这个字符窜计数并说。理解题目之后简单的遍历统计即可，值得一提的是，用String会超时，要用StringBuilder tmp = new StringBuilder() --> tmp.append(t) --> tmp.toString()
 
+039_Medium: Combination Sum. 给定一个数组和一个target数字，找到数组中所有子数组可能的组合，使得子数组的和等于target，每个元素可使用无限次，结果按照升序排列。思路，回朔法。有两个版本的，第一个版本比第二个快好多。对于每个元素，选择放，放一个，放两个。。。，然后再扔给下一元素。
+
+040_Medium: Combination Sum II. 承接上题，要求每个元素只能出现一次，且不能有重复的序列。如果只有前面一个要求，那么在上题中的dfs中
+
+    for(int j = i;j < c.length;j++){
+      tmp.add(c[j]);
+      dfs(j,c,target-c[j],tmp,re);
+      tmp.remove(tmp.size()-1);
+    }  
+
+把dfs中的j改成j+1，去 搜索下一个就好，但是如果原数组中有重复的数字，那么这样搜索就会有重复的，如c=[1,1],target=1,结果会有两个1. 要避免重复结果的出现，要在for循环中判断一下，假设j = i+1, 然后有c[j] == c[i]，能够到达这一步，表示在这个函数中，c[i]没有放进来，那么c[j]也不应该放进去（原因时在前前的dfs中肯定出现了10这样的情况，现在不能出现01），故应该continue掉.代码如下：
+
+    for(int j = i;j < c.length;j++){
+      if(j != i && c[j] == c[j-1]) continues;
+      tmp.add(c[j]);
+      dfs(j+1,c,target-c[j],tmp,re);
+      tmp.remove(tmp.size()-1);
+    }
+
+补充，有效利用数组升序进行剪枝，在dfs中加入：
+
+    if(target - c[j] < 0){
+        break;
+    }
+
+这样会更快。
+
 043_Medium: Multiply Strings.两个数相乘，如果按照乘法模拟运算的话比较复杂，注意技巧就是建立个n1+n2长度的数组存结果，然后倒数第i位数字乘以倒数第j位数字乘的结果是保存在数组i+j位，最后再统一进位，详见代码。
 
 045_Hard: Jump Game II. 一个数组，每个数字表示能够向前跳跃的最大距离。用dp能够在O(n^2)的时间复杂度解决，但是需要更快的方法。思路是一种类似bfs的思想，特殊情况处理好之后，设置两个指针last,cur，表示,一开始last=cur=nums[0]，step = 1,表示走一步的范围是0~last，然后让i从1遍历到last,1<=i<=last，这其中如果有i+nums[i]能够到达n-1的话，马上返回step+1,期间也不能更新最远的cur；当i>last时，表示i之后都无法step步走到，所以step++,并把last=cur，其中旧的last和新的last之间的位置是新的step步才能到达的，而此时的last表示step步最远能够到达的位置。说的不太清楚，附上官网最hot的分析：
