@@ -197,6 +197,14 @@ Of course, we also need to take the sign into considerations, which is relativel
 
 043_Medium: Multiply Strings.两个数相乘，如果按照乘法模拟运算的话比较复杂，注意技巧就是建立个n1+n2长度的数组存结果，然后倒数第i位数字乘以倒数第j位数字乘的结果是保存在数组i+j位，最后再统一进位，详见代码。
 
+044_Hard: Wildcard Matching.两个字符串匹配，？匹配任意一个字符，*匹配0个或多个字符。两种方法：1，动态规划 ，2 贪心算法
+
+1）动态规划，建立boolean数组isM[][],其中isM[i+1][j+1]表示[0...i]和[0...j]是否匹配，最后返回isM[n][m]。那么如何判断isM[i+1][j+1]呢？当p[j]==‘？’时，s[i]匹配p[j]成功，则isM[i+1][j+]=isM[i][j]；当p[j]=='*'时，关键来了，p[j]可以匹配任意多的字符，直观来说，要让[0...j-1]去匹配[0...0],[0...1]....[0...i-1],[0...i]这么多个一个，只要一个匹配成功即可，如果写个循环一个个找也行，会很慢。转换一下思路，isM[i+1][j]表示让p[j]匹配0个，而isM[i][j+1]表示[0...i-1]匹配[0...j+1]的结果，此时如果为true，表示已知p[j]匹配了0个或多个，在把s[i]匹配进来，就表示匹配一个以上了。因此把两种情况合在一起，就有isM[i+1][j+1]=isM[i+1][j]||isM[i][j+1]。
+
+关于初始化，isM[0][0]=true表示空匹配空，isM[i][0]=false 0<i<=n 表示空的p不能匹配非空的s。isM[0][j]=true p[0...j-1]全为*。
+
+2）贪心算法，解释在代码里，这种方法更快。大概就是两个指针同时找，当找到*时，记录下它胡位置，在以后胡过程中，如果遇到无法匹配的，就用这个*去匹配.当找到多个*,用最近找到胡那个。
+
 045_Hard: Jump Game II. 一个数组，每个数字表示能够向前跳跃的最大距离。用dp能够在O(n^2)的时间复杂度解决，但是需要更快的方法。思路是一种类似bfs的思想，特殊情况处理好之后，设置两个指针last,cur，表示,一开始last=cur=nums[0]，step = 1,表示走一步的范围是0~last，然后让i从1遍历到last,1<=i<=last，这其中如果有i+nums[i]能够到达n-1的话，马上返回step+1,期间也不能更新最远的cur；当i>last时，表示i之后都无法step步走到，所以step++,并把last=cur，其中旧的last和新的last之间的位置是新的step步才能到达的，而此时的last表示step步最远能够到达的位置。说的不太清楚，附上官网最hot的分析：
 
 I try to change this problem to a BFS problem, where nodes in level i are all the nodes that can be reached in i-1th jump. for example. 2 3 1 1 4 , is 2|| 3 1|| 1 4 ||
