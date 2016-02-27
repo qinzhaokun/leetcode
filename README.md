@@ -215,6 +215,13 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 047_Medium：PermutationsII：生成不重复的全排列。大体思路和上题一样，唯一不同的是，在nums[i]与它后面的元素交换时，不能重复交换，如1,3,4,4,3,2这个数组，i==1时,3之和j==1,j==2,j==5这三个交换。
 
+048_Medium: Rotate Image. 顺时针旋转n*n的矩阵，要求in-place操作。思路：自己的方法很土，最外层转一次，然后再倒数第二外层再转....网上的思路很好，先进行转置操作(交换matrix[i][j]和matrix[j][i])，然后，如果是顺时针，则竖直对换，第一列和最后一列换，第二列和倒数第二列换...
+逆时针则是水平对换。
+
+1  2  3        1  4  7        7  4  1
+4  5  6  --->  2  5  8  --->  8  5  2
+7  8  9        3  6  9        9  6  3
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
