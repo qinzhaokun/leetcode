@@ -222,6 +222,14 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 4  5  6  --->  2  5  8  --->  8  5  2
 7  8  9        3  6  9        9  6  3
 
+049_Medium: Group Anagrams. 给一个数组，把具有相同字母的元素聚合成一组在一起返回，每组的元素按字典排序。思路：由于要求每组组内要有序，所以可以先将原始数组排序，在遍历，这样，逐个加入不同组后每组也就有序了。关于比较两个元素是否含有相同的字母，可以将其分别排序，如果相等，则表示它们含有相同字母。
+
+050_Medium: Pow(x, n).求x的n次方. 用二分的思想，递归求解val = Pow(x,n/2),然后再val*val，如果n是奇数，则要再乘以x。注意，如果n是负数，应该把x变成1/x,把n变成-n。
+
+051_Hard: N-Queens. N皇后问题，典型的回朔算法。
+
+52_Hard: N-Queens II. 返回N皇后问题解的个数。以为会有很好的方法，但是直接用上一题的回朔，每次找到count++就行了。
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
