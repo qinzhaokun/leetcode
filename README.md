@@ -228,7 +228,13 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 051_Hard: N-Queens. N皇后问题，典型的回朔算法。
 
-52_Hard: N-Queens II. 返回N皇后问题解的个数。以为会有很好的方法，但是直接用上一题的回朔，每次找到count++就行了。
+052_Hard: N-Queens II. 返回N皇后问题解的个数。以为会有很好的方法，但是直接用上一题的回朔，每次找到count++就行了。
+
+053_Medium: Maximum Subarray. 求最大连续字数组和。思路：
+
+典型动态规划，用maxSum[i]记录以i结尾的最大字数组和，显然,当sumMax[i-1]<0，那么sumMax[i]就是自己，否则，就是sumMax[i-1]+nums[i].由于sumMax[i]只与sumMax[i-1]相关，因此空间复杂度可优化为O(1).
+
+分治法：一份为2，递归左边求一个，递归右边求一个，包含中间的求一个,三个取最大的。
 
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
