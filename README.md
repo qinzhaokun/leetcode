@@ -236,6 +236,12 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 分治法：一份为2，递归左边求一个，递归右边求一个，包含中间的求一个,三个取最大的。
 
+054_Medium:	Spiral Matrix. 环形输出矩阵。思路，环形输出矩阵。
+
+055_Medium:	Jump Game. 跳跃游戏。给定一个数组，每个值表示能够向前跳跃多远。思路：简单的动态规划。用max记录能够跳的最远的距离。用i遍历数组，若i < max，表示无法跳到这，返回false；否则用i+nums[i]更新一些。注意，用Math函数的话会超时，要用if判断 if(i+nums[i] > max) max = i+nums[i];
+
+056_Hard:Merge Intervals。合并多个区间。[1,5],[2,8] => [1,8]。思路：用归并排序，关键是如何合并两个指定的区间，根据它们的start和end来判断。
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
