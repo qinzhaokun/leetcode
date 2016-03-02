@@ -248,6 +248,8 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 059_Medium:Spiral Matrix II.从1到n^2生成环形矩阵。
 
+060_Medium: Permutation Sequence. 1->n的全排列，是有顺序的，给定n和k，共有1->n的全排列共有n!个，返回第k个。思路：一开始看到n<9的条件，以为用暴力法，挨个找全排列可以通过，没想到超时，这里应该用更巧妙的方法。举个栗子：3的全排列：123,132,213,231,312,321.建立一个升序数组[1,2,3]若只看第1位，以1开头的有2!个数，以2和3开头的也是2!。因此，给定k，那么第1位是多少，有莫有很快的方法。给定k，令k--,第一位就是k/(n-1)!,这很容易发现；k在[1,2]之间，开头是1;k在[3,4]之间，开头是2;k在[5,6]之间，开头是3。接下来，确定了第1位后，把这个数字拿走，在剩下的数全排列，令k = k%(n-1)!, 继续下一步判断。详见代码。
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
