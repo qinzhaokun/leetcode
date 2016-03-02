@@ -242,6 +242,12 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 056_Hard:Merge Intervals。合并多个区间。[1,5],[2,8] => [1,8]。思路：用归并排序，关键是如何合并两个指定的区间，根据它们的start和end来判断。
 
+057_Hard: Insert Interval. 在一个已排序的区间内插入一个区间，必要时要合并区间。先找到要插的位置，插入后再合并，注意要复制所有的。
+
+058_Easy: Length of Last Word. 最后一个字的长度。实现题，详见代码。
+
+059_Medium:Spiral Matrix II.从1到n^2生成环形矩阵。
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
