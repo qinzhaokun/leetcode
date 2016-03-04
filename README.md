@@ -254,6 +254,12 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 062_Medium: Unique Paths. 给一片方格，从左上角出发，问有多少路径到右下角。两种方法，思路：1）经典dp：nums[i][j] = nums]i-1][j]+nums[i][j-1]  比较慢。 2） 公式法，一共要走m+n-2步，其中要向右走n-1步，根据高中的排列组合知识，总共的选择有C(m+n-1,n-1)种方法，等于(m+n-2)!/(m-1)!*(n-1)! = (n+m-2)*...*(n+0)/(m-1)*...*1. 可用一个O(m)的时间求出，但是注意的是要用double，最后还有使用Math.round(total)才能过。
 
+063_Medium:Unique Paths II. 承接上题，有些格子有障碍物不能通过，在这种情况下求总共的路径数。思路：不能用公式法，只能用dp。
+
+064_Medium:	Minimum Path Sum。承接上题，每个方格有个数字，请和最小的路径。经典dp，记得算法考试考过这题。
+
+065_Hard: Valid Number. 判断一个字符串是否是合法的数字，其中包括符号-,+,.,e,0-9.这道题还是很烦的，要考虑各种情况。
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
