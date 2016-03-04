@@ -260,6 +260,12 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 065_Hard: Valid Number. 判断一个字符串是否是合法的数字，其中包括符号-,+,.,e,0-9.这道题还是很烦的，要考虑各种情况。
 
+066_Easy: Plus One. 数字以char数组的形式。思路，从后往前，找到第一个不等于9的数，把后面的数设置为0，这个数加1.
+
+067_Easy: Add Binary. 两个二进制数相加。我的思路是，用短的加上大的，考虑进位，这题比较简单。
+
+068_Easy: Text Justification. 这题好烦，题意说不清，把一堆字符串张开。这里注意好多细节，包括怎么分组，我这里是用到，如果sum+j-i<maxWidth,则到i到j-1为一组，因为每个元素之前至少保留一个位置。还有就是怎么处理如果多余的空格应该放在左边，通过逻辑l = empty/tmp; empty-l;tmp--;
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
