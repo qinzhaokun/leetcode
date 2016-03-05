@@ -266,6 +266,12 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 068_Easy: Text Justification. 这题好烦，题意说不清，把一堆字符串张开。这里注意好多细节，包括怎么分组，我这里是用到，如果sum+j-i<maxWidth,则到i到j-1为一组，因为每个元素之前至少保留一个位置。还有就是怎么处理如果多余的空格应该放在左边，通过逻辑l = empty/tmp; empty-l;tmp--;
 
+069_Medium:	Sqrt(x).求d的平方根。思路：典型的二分查找。要注意的是求mid*mid时要用double类型的，不然会越界变成负数。
+
+070_Easy:Climbing Stairs. 爬楼梯问题，每次只能爬一个台阶或2个台阶，问爬到n层有多少种爬法。思路：简单的动态规划。递归式：dp[i]=dp[i-1]+dp[i-2]
+
+071_Medium: Simplify Path. 类似linux的文件路径，其中可能出现.或者..的情况。思路，首先用split("/")把path分成数组，遍历数组，遇到.跳过，遇到..删除上一个有效的目录，否则，添加一个有效的目录。
+
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
 084_Hard: Largest Rectangle in Histogram
