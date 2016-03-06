@@ -282,6 +282,14 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 076_Hard: Minimum Window Substring. 给定字符串S和T，在S中找到一个最小长度的子窜，使得这个子串包含T的所有字符。思路：这题用双指针来做，我的代码很乱，但却无缘无故的beat了86%的用户。首先用int d[300]来存储T中每个字符出现的次数，用boolean g[300]来存储对应字符是否出现。设一个指针point1在0处，用j来遍历，当g[s[j]-' ']==true 时，给d[s[j]-' ']--;当d[s[j]-' ']>=0,表示这个字符是可取的，count++；否则，该字符已经出现过多了，不能count++。之后再判断count==n? 如果达到n表示从point1到j已经包含了所有的T了，但是要求最短的，所有这个时候point1要前进，前进到什么位置呢？前进到g[s[point1]]&&d[s[point1]]==0为止，这里应该能够理解，到这里算一下最短距离；再把d[s[point1]]++,count--,point1++,从新找新的j。
 
+077_Medium:Combinations.给定n和k，则有数组[1,2,...,n]，给出所有个数为k的子集。思路：很类似下面一题子集的问题，但是数量固定，注意剪枝会更快。
+
+078_Medium:	Subsets. 给出一个集合，找出所有的子集。思路：eBay面试的时候问过，dfs搜索。
+
+079_Medium:	Word Search.字符矩阵，给一个字符串，问是否在这个矩阵中出现。思路：回朔搜索。
+
+080_Medium: Remove Duplicates from Sorted Array II.移除数组两个以上的元素。思路：用双指针，使得遍历到j时，[0,i]是可取的，[i+1,j]是不可取的，每次比较nums[j]==nums[i] && nums[j]==nums[i-1]， 如果成了，则j重复，否则交换nums[j]和nums[i+1]，并且i++。
+
 084_Hard: Largest Rectangle in Histogram
 
 1:动态规划：使用动态规划，用left[i]表示第i个柱子可以最多向左延伸至第left[i]个柱子，形成一个矩形，right[i]则表示向右延伸。遍历两次，分别计算出这两个数组。
