@@ -274,6 +274,12 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 072_Hard: Edit Distance.动态规划问题，设二维数组dp[n+1][m+1]，dp[i+1][j+1]表示word1(0...i)到word2(0...j)需要的最小具体，当word1[i]==word2[j]时，dp[i+1][j+1]=dg[i][j]；否则，dp[i+1][j+1] = min(dp[i+1][j],dp[i][j+1],dp[i][j])+1. 其中，dp[i+1][j]+1表示在word1最后插入word2中最后一个字符；dp[i][j+1]+1表示在word1中删除最后一个字符；dp[i][j]+1表示将word1的最后一个字符替换成word2最后一个字符.
 
+073_Medium:Set Matrix Zeroes. 对于一个矩阵，若matrix[i][j] == 0; 则设置第i行和第j列都为0，要求不用常数空间复杂度。思路：先用firstRow和firstCol存储第0行和第0列是否需要全部为0，然后遍历非第0行和第0列，若matrix[i][j] == 0; 则设置用第0行和第0列存储，即matrix[i][0] = 0; matrix[0][j] = 0;
+
+074_Medium:Search a 2D Matrix. 矩阵有这样的性质，按行递增，某一行的第一个元素大于上一行的最后一个元素。思路：二分查找的拓展。
+
+075_Medium:	Sort Colors.三种颜色用0,1,2表示，颜色一起的聚集在一起，要求one pass遍历。思路：借鉴快排的思路，遍历数组，遍历到i时，使得[0,firstWhite-1]都为0，[firstWhilte,firstBule-1]都为1，而[firstBule,i]都为2.再仔细看看代码。
+
 084_Hard: Largest Rectangle in Histogram
 
 1:动态规划：使用动态规划，用left[i]表示第i个柱子可以最多向左延伸至第left[i]个柱子，形成一个矩形，right[i]则表示向右延伸。遍历两次，分别计算出这两个数组。
