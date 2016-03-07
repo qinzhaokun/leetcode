@@ -290,6 +290,8 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 080_Medium: Remove Duplicates from Sorted Array II.移除数组两个以上的元素。思路：用双指针，使得遍历到j时，[0,i]是可取的，[i+1,j]是不可取的，每次比较nums[j]==nums[i] && nums[j]==nums[i-1]， 如果成了，则j重复，否则交换nums[j]和nums[i+1]，并且i++。
 
+081_Medium: Search in Rotated Sorted Array II. 已排序的数组经过旋转（这个数组存在相同元素），查找某个数是否存在。思路。承接033；对于类似033的搜索过程，当得到mid时，考虑nums[mid]和i的关系，当nums[mid]>nums[i]时，画个图很明显可以看出nums[mid]在上方，因此进一步判断若nums[i]<=target<nums[mid], 则j=mid-1; 否则i = mid+1. 当nums[mid] < nums[i]时，nums[mid]在nums[i]的下方，进一步判断,若nums[mid] < target <= nums[j] ,则i= mid+1， 否则j=mid-1. 当nums[mid] == nums[i] 时，表明有重复或者j-i=1. 有重复的话，mid可能靠近i,也有可能靠近j，这是保险走一步i++。
+
 084_Hard: Largest Rectangle in Histogram
 
 1:动态规划：使用动态规划，用left[i]表示第i个柱子可以最多向左延伸至第left[i]个柱子，形成一个矩形，right[i]则表示向右延伸。遍历两次，分别计算出这两个数组。
