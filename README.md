@@ -292,6 +292,10 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 081_Medium: Search in Rotated Sorted Array II. 已排序的数组经过旋转（这个数组存在相同元素），查找某个数是否存在。思路。承接033；对于类似033的搜索过程，当得到mid时，考虑nums[mid]和i的关系，当nums[mid]>nums[i]时，画个图很明显可以看出nums[mid]在上方，因此进一步判断若nums[i]<=target<nums[mid], 则j=mid-1; 否则i = mid+1. 当nums[mid] < nums[i]时，nums[mid]在nums[i]的下方，进一步判断,若nums[mid] < target <= nums[j] ,则i= mid+1， 否则j=mid-1. 当nums[mid] == nums[i] 时，表明有重复或者j-i=1. 有重复的话，mid可能靠近i,也有可能靠近j，这是保险走一步i++。(经过自己的测试，第三种情况再加上判断nums[i] == nums[j], 如果不相等, 令i=mid+1, 否则i++， 这样能快由2ms变成1ms)
 
+082_Medium:Remove Duplicates from Sorted List II. 移除链表中有重复的节点，链表操作，详见代码。（主要有重复，全部移除，比如1-->2-->2-->3, 变成1-->3）
+
+083_Easy:Remove Duplicates from Sorted List. 移除链表中重复的节点，链表操作，详见代码。
+
 084_Hard: Largest Rectangle in Histogram
 
 1:动态规划：使用动态规划，用left[i]表示第i个柱子可以最多向左延伸至第left[i]个柱子，形成一个矩形，right[i]则表示向右延伸。遍历两次，分别计算出这两个数组。
@@ -312,6 +316,8 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 其实这个做法就是把数组中的每个元素都作为矩形高度，计算了一遍该高度下矩形的最大面积。只是每次都贪心最大，避免了重复计算，所以效率高。
 
 再遍历一次，即可求出所有的柱子可以形成的最大的矩形面积。为了减少边界的判断，可以使用哨兵，在两端添加两个柱子高度都为-1.
+
+085_Hard:Maximal Rectangle. 矩阵中最大的全部包含1的矩形块。思路主要利用上题，详见代码。
 
 136_Medium: Single Number.给出一个数组，其中一个数只出现一次，其他的数出现两次，找到只出现一次的那个数。思路：考虑位运算，异或操作，两个相同的数异或等于0，0和任何数异或都等于它本身。因此，把数组所有数都异或一遍，结果就是出现一次的数。
 
