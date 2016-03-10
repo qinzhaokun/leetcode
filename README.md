@@ -366,6 +366,12 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 同理，如果s2[j-1] = s3[i+j-1] && match[i][j-1], 那么match[i][j] true;
 
+098_Medium:. Validate Binary Search Tree. 判断一个数是是否是二叉搜索树。思路：两种方法
+
+> 1：递归判断，对于左右子树，要传递一个区间[min,max]，子树的node.val不能在这个区间外（包括踩在边界上），对于左子树，更新其max值，max=Math.min(max,node.val);对于右子树，更新其min值，min=Math.max(min.node.val). 初始的min设置为Long.MIN_VALUE, max=Long.MAX_VALUE.
+
+> 2：中序遍历，判断得到的数组是否是递增的。
+
 136_Medium: Single Number.给出一个数组，其中一个数只出现一次，其他的数出现两次，找到只出现一次的那个数。思路：考虑位运算，异或操作，两个相同的数异或等于0，0和任何数异或都等于它本身。因此，把数组所有数都异或一遍，结果就是出现一次的数。
 
 137_Medium: Single Number II. 给出一个数组，其中一个数只出现一次，其他的数只出现3次，找出只出现一次的那个数。思路：一看和上一题很像，但是3是even，采用异或操作不等于0，所以不能用上面的思路，这题比上题更普遍，把每个数字分解为32位，把数组的所有数每一位分别相加，那么会出现什么情况？如果不加那个只出现一次的数，那么每一位上都是3的倍数，因此，只要在每一位上对3取余，就是只出现一次的那个数的二进制形式。
