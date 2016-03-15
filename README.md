@@ -380,6 +380,8 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 102_Easy: Binary Tree Level Order Traversal. 二叉树层序遍历。 思路：借助队列。这里需要注意的是java的知识，队列用LinkedList. 需要用到的方法是add(o),在队尾添加一个元素，poll(),移除并返回队列头一个元素。用Queue queue = new LinkedList<>(), 可使用peek,poll,add,不能使用push，pop方法，因为根据多态，其父类Queue无这两个方法，实际上也不能用这两个方法，因为这是栈操作的，不能实现队列的功能。用LinkedList queue = new LinkedList<>() 可以用pop和push。
 
+103_Medium: Binary Tree Zigzag Level Order Traversal. 二叉树层序的交叉遍历。思路：自己的思路是用两个栈，交替的放每一层，其中一个先放left，再放right，另一个先放right，再放left。感觉比较low。最hot的方法是用dfs，若是偶数层在加在末尾，若是奇数层则加在最前，感觉也比较low。
+
 136_Medium: Single Number.给出一个数组，其中一个数只出现一次，其他的数出现两次，找到只出现一次的那个数。思路：考虑位运算，异或操作，两个相同的数异或等于0，0和任何数异或都等于它本身。因此，把数组所有数都异或一遍，结果就是出现一次的数。
 
 137_Medium: Single Number II. 给出一个数组，其中一个数只出现一次，其他的数只出现3次，找出只出现一次的那个数。思路：一看和上一题很像，但是3是even，采用异或操作不等于0，所以不能用上面的思路，这题比上题更普遍，把每个数字分解为32位，把数组的所有数每一位分别相加，那么会出现什么情况？如果不加那个只出现一次的数，那么每一位上都是3的倍数，因此，只要在每一位上对3取余，就是只出现一次的那个数的二进制形式。
