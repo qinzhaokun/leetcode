@@ -382,6 +382,14 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 103_Medium: Binary Tree Zigzag Level Order Traversal. 二叉树层序的交叉遍历。思路：自己的思路是用两个栈，交替的放每一层，其中一个先放left，再放right，另一个先放right，再放left。感觉比较low。最hot的方法是用dfs，若是偶数层在加在末尾，若是奇数层则加在最前，感觉也比较low。
 
+104_Easy: Maximum Depth of Binary Tree. 求二叉树的深度。递归。
+
+105_Medium: Construct Binary Tree from Preorder and Inorder Traversal. 从中序和前序恢复二叉树。
+
+106_Medium: Construct Binary Tree from Inorder and Postorder Traversal. 从中序和后序恢复二叉树。
+
+107_Easy: Binary Tree Level Order Traversal II. 二叉树层序遍历，反向输出。
+
 136_Medium: Single Number.给出一个数组，其中一个数只出现一次，其他的数出现两次，找到只出现一次的那个数。思路：考虑位运算，异或操作，两个相同的数异或等于0，0和任何数异或都等于它本身。因此，把数组所有数都异或一遍，结果就是出现一次的数。
 
 137_Medium: Single Number II. 给出一个数组，其中一个数只出现一次，其他的数只出现3次，找出只出现一次的那个数。思路：一看和上一题很像，但是3是even，采用异或操作不等于0，所以不能用上面的思路，这题比上题更普遍，把每个数字分解为32位，把数组的所有数每一位分别相加，那么会出现什么情况？如果不加那个只出现一次的数，那么每一位上都是3的倍数，因此，只要在每一位上对3取余，就是只出现一次的那个数的二进制形式。
