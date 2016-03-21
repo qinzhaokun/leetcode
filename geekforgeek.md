@@ -47,6 +47,8 @@ The middle term 4 is added to include numbers 100, 200, 400 and 500.
 Let us take n = 35 as another example.  
 count(35) = count (3*10 - 1) = count(29)
 
+8：给定n，求n以内的质数。Sieve of Eratosthenes。 设立一个数组，a[2,3,...n]，循环标记不是质数的数字。
+
 博弈：
 
 威佐夫博奕
