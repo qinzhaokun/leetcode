@@ -431,6 +431,16 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 115_Hard: Distinct Subsequences. 给两个字符串s和t,通过删除s的某些元素把它变成t有几种方法。思路：动态规划。定义dp[i][j]为字符串i变换到j的变换方法。
 
+116_Medium: Populating Next Right Pointers in Each Node. 给一棵完全二叉树，要求使得每个节点有个指针指向它同层的右边一个节点。思路：用队列实现，层序遍历的拓展
+
+117_Hard: Populating Next Right Pointers in Each Node II. 同上，给定一个二叉树。用上面相同的代码也能解决。
+
+118_Easy: Pascal's Triangle. 杨辉三角实现。思路：按照杨辉三角的计算公式来生成。
+
+119_Easy：Pascal's Triangle II. 生成杨辉三角的第n行。要求只能用O(n)的空间。而二重循环，在每层循环中，从后往前遍历，更新每一位的值，有arr[j] = arr[j]+arr[j-1]，注意，不能从前往后更新。
+
+120_Medium:	Triangle. 给一个类似杨辉三角的三角，找一条从顶端到最低端的一条最短的路径，空间要求O(n)。思路：动态规划，设dp[n],dp[j]是表示遍历到i层后到达a[i][j]的最短路径和。
+
 如果S[i]==T[j]，那么dp[i][j] = dp[i-1][j-1] + dp[i-1][j]。意思是：如果当前S[i]==T[j]，那么当前这个字母即可以保留也可以抛弃，所以变换方法等于保留这个字母的变换方法加上不用这个字母的变换方法。
 如果S[i]!=T[i]，那么dp[i][j] = dp[i-1][j]，意思是如果当前字符不等，那么就只能抛弃当前这个字符。
 递归公式中用到的dp[0][0] = 1，dp[i][0] = 0（把任意一个字符串变换为一个空串只有一个方法）
