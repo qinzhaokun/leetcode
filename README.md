@@ -449,7 +449,7 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 122_Medium: Best Time to Buy and Sell Stock II.承接上题，可以买卖无限次。思路：只要有收益就马上卖。求相邻元素中，只要前一个比后一个大，他们的差值就应该被记录。
 
-123_Hard: Best Time to Buy and Sell Stock III. 承接上题，智能买卖两次。思路:动态规划，
+123_Hard: Best Time to Buy and Sell Stock III. 承接上题，只能买卖两次。思路:动态规划，任意位置切一半，求左边最多买卖一次的收益，右边最多买卖的收益。分别设立两个数组left[n],right[n]，left[i]表示0到i的一次买卖最多的收益，right[j]表示j到n-1最多的收益，最后遍历每个i，求left[i]+right[i]的最大值。
 
 124_Hard: Binary Tree Maximum Path Sum. 二叉树中找到一条路径和最长的路径，该路径不需要经过根节点，且该路径不能出现岔路。思路：运用递归，定义一个递归函数maMax(TreeNode node),在函数中递归得到left=myMax(node.left),right=myMax(node.right)返回的是node存在路径中最大的路径和， 所以返回的应该是Math.max(node.val,Math.max(node.val+left,node.val+right)).同时在函数里要更新全局的最大值，即localMax = node.val;if(left>0) localMax+=left; if(right> 0) localMax+=right; 更新localMax到全局max。
 
