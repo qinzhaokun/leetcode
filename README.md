@@ -445,6 +445,14 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 如果S[i]!=T[i]，那么dp[i][j] = dp[i-1][j]，意思是如果当前字符不等，那么就只能抛弃当前这个字符。
 递归公式中用到的dp[0][0] = 1，dp[i][0] = 0（把任意一个字符串变换为一个空串只有一个方法）
 
+123_Medium: Best Time to Buy and Sell Stock. 给一个数组表示股票价格，只能买卖一次，求最大收益。思路：动态规划，遍历到i时表示截止i时刻最大的收益，同时维护一个之前的最低价格min,当prices[i]<min,更新Min,否则，更新最大收益
+
+122_Medium: Best Time to Buy and Sell Stock II.承接上题，可以买卖无限次。思路：只要有收益就马上卖。求相邻元素中，只要前一个比后一个大，他们的差值就应该被记录。
+
+123_Hard: Best Time to Buy and Sell Stock III. 承接上题，智能买卖两次。思路:动态规划，
+
+124_Hard: Binary Tree Maximum Path Sum. 二叉树中找到一条路径和最长的路径，该路径不需要经过根节点，且该路径不能出现岔路。思路：运用递归，定义一个递归函数maMax(TreeNode node),在函数中递归得到left=myMax(node.left),right=myMax(node.right)返回的是node存在路径中最大的路径和， 所以返回的应该是Math.max(node.val,Math.max(node.val+left,node.val+right)).同时在函数里要更新全局的最大值，即localMax = node.val;if(left>0) localMax+=left; if(right> 0) localMax+=right; 更新localMax到全局max。
+
 136_Medium: Single Number.给出一个数组，其中一个数只出现一次，其他的数出现两次，找到只出现一次的那个数。思路：考虑位运算，异或操作，两个相同的数异或等于0，0和任何数异或都等于它本身。因此，把数组所有数都异或一遍，结果就是出现一次的数。
 
 137_Medium: Single Number II. 给出一个数组，其中一个数只出现一次，其他的数只出现3次，找出只出现一次的那个数。思路：一看和上一题很像，但是3是even，采用异或操作不等于0，所以不能用上面的思路，这题比上题更普遍，把每个数字分解为32位，把数组的所有数每一位分别相加，那么会出现什么情况？如果不加那个只出现一次的数，那么每一位上都是3的倍数，因此，只要在每一位上对3取余，就是只出现一次的那个数的二进制形式。
