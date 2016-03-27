@@ -453,6 +453,54 @@ clearly, the minimum jump of 4 is 2 since 4 is in level 3. my ac code.
 
 124_Hard: Binary Tree Maximum Path Sum. 二叉树中找到一条路径和最长的路径，该路径不需要经过根节点，且该路径不能出现岔路。思路：运用递归，定义一个递归函数maMax(TreeNode node),在函数中递归得到left=myMax(node.left),right=myMax(node.right)返回的是node存在路径中最大的路径和， 所以返回的应该是Math.max(node.val,Math.max(node.val+left,node.val+right)).同时在函数里要更新全局的最大值，即localMax = node.val;if(left>0) localMax+=left; if(right> 0) localMax+=right; 更新localMax到全局max。
 
+125_Easy: Valid Palindrome. 给定一个字符串，看是否是回文，空格标点不计，只判断字符和数字，大小写不敏感。思路：分别从前往后和从后往前找到符合的字符，统一变成小写，在比较。
+
+127_Medium: Word Ladder. 给定一组字符串，和一个初始字符串，后最终字符串，要求每一只改变一个字符，从初始字符串经过字符串组跳到最终字符串。思路：这题用dfs能做，但是dfs是找到一个后更加已找到的最大长度剪枝，会超时。用bfs比较靠谱，注意为了防止出现重复跳，当找到一个词组中出现的字符串时，应该把它从字符串数组中删除，若是用dfs还需要用回搠爸它添加回来，bfs则不用。最后这题对时间要求很大，用java会超时，用c++不会。
+
+128_Hard Longest Consecutive Sequence.给定一个不排序的数组，要求找出最长连续子序列的值。如100, 4, 200, 1, 3, 2 最长 的是1,2,3,4，应该返回4. 要求线性时间O(n).我的思路：利用hashMap的查询时间是O(1)。对于每一个值，对应的value是它离他最远的值。比如一开始是(1,1),如果出现2，则需要更新变成(1,2),(2,1),出现0，则更新为(1,0),(0,1).这两种情况都还比较好，如果map里已经有了(1,2),(2,1),(4,5),(5,4)，这时候出现了3，就需要把两段都连起来，
+
+    if(map.containsKey(nums[i]-1) && map.containsKey(nums[i]+1)){
+        int left = map.get(nums[i]-1);
+        int right = map.get(nums[i]+1);
+        map.put(left,right);
+        map.put(right.left);
+        map.put(nums[i],Any);
+    }
+
+注意，nums[i]也要放入表中，以防止重复再进来nums[i]改变已经处理好的数据。
+
+129_Medium: Sum Root to Leaf Numbers. 求所有的根到叶子节点的路径表示的十进制数的和。思路：遍历二叉树，当到达叶子节点时把数给加上。
+
+130_Medium: Surrounded Regions.类似围棋的，讲被X包围的O变成X。
+
+X X X X
+
+X O O X
+
+X X O X
+
+X O X X
+
+变成：
+
+X X X X
+
+X X X X
+
+X X X X
+
+X O X X
+
+这题有需要用bfs了，要注意的是从边界的O出发，用bfs找到能够到达的O，把这些O变成E，表示不需要做改变的。最后，遍历整个方正，把E变成O，把O变成X。
+
+131_Medium: Palindrome Partitioning. 给定一个字符串，找到所有的分割字符串方法，使得分割后每个部分都是回文。思路：用boolean [][] dp来标记s.substring(i,j)是否是回文。然后用dfs找到所有的组合。
+
+132_Hard: Palindrome Partitioning II.承接上题，找到分割数最小的方案，返回最小分割数。思路：典型的dfs变dp，dfs用于找所有可能，dp则能把对应的问题变成可能数，最大/最小的某一个。
+
+思路1：用dp1[i]存储s.substring(0,i+1)最小的分割，则依靠dp[][]和dp1[0] - dp1[i-1]，可以判断dp1[i]。
+
+思路2：更简单，一次二重循环，空间更小。建立dp[],当遍历到i时，在里层循环用j遍历0到i,表示以j为中心或者以j-1和j+1为中心的回文。
+
 136_Medium: Single Number.给出一个数组，其中一个数只出现一次，其他的数出现两次，找到只出现一次的那个数。思路：考虑位运算，异或操作，两个相同的数异或等于0，0和任何数异或都等于它本身。因此，把数组所有数都异或一遍，结果就是出现一次的数。
 
 137_Medium: Single Number II. 给出一个数组，其中一个数只出现一次，其他的数只出现3次，找出只出现一次的那个数。思路：一看和上一题很像，但是3是even，采用异或操作不等于0，所以不能用上面的思路，这题比上题更普遍，把每个数字分解为32位，把数组的所有数每一位分别相加，那么会出现什么情况？如果不加那个只出现一次的数，那么每一位上都是3的倍数，因此，只要在每一位上对3取余，就是只出现一次的那个数的二进制形式。
