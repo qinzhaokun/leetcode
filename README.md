@@ -533,6 +533,26 @@ X O X X
 
 140_Hard: Word Break II. 承接上题，找出所有的能分割的。找所有可能的要用dfs了，但是如果直接用，找到一个j，递归去找j+1,这样会超时。关键是有效的剪枝。这里的剪枝比较巧妙，当找到s[0,j]的有效分割是，记录一下此时的re.size()，递归去找s.substring(j+1)所有有效割，当找完之后，记录此时的re.size()，比较两次的大小，如果是相等的，表示s.substring(j+1)无法被有效的分割，所以应该设置me[j]=true,以便于在其他分支上递归到j时，不用再次遍历了。
 
+141_Medium: Linked List Cycle. 判断链表是否有环，思路：快慢指针，相遇则有环，否则则无环。
+
+142_Medium: Linked List Cycle II. 判断链表有没有环，如果有，则返回进环的第一个元素，否则返回null.思路：用快慢指针找到重合点，然后一指针从重合点往下跳，一个点从head往下跳，第一次重合时就是需要找的。
+
+143_Medium:	Reorder List。  L0→L1→…→Ln-1→Ln,变成 L0→Ln→L1→Ln-1→L2→Ln-2→….个人觉得这题很无聊，solution：快慢指针找到中间元素，链表切开，后半段反转，然后"归并"。
+
+144_Medium:	Binary Tree Preorder Traversal. 二叉树先序遍历。
+
+145_Hard: Binary Tree Postorder Traversal.二叉树后序遍历，居然是hard。
+
+147_Medium: Insertion Sort List. 链表的插入排序。思路：简单实现链表操作。
+
+148_Medium: Sort List. 考察链表的归并排序。思路：用快慢指针找到中间节点，这里要注意如果是这有两个节点的情况slow最后应该指向第一个元素，否则会死循环.
+
+150_Medium: Evaluate Reverse Polish Notation.看例子：["2", "1", "+", "3", "*"] -> ((2 + 1) * 3) -> 9。思路：用栈来解决就好了。
+
+151_Medium: Reverse Words in a String. 给定一个字符串，按字符串反转。"leet code" -> "code leet"。思路：简单的字符串操作，用trim()去掉前后空格，再操作。
+
+152_Medium: Maximum Product Subarray. 给定一个数组，求有最大积的连续子数组。思路：要用动态规划的思想。初始最大值设为nums[0],i从1遍历到n，当遍历到i时，则以nums[i-1]结尾的子数组的最大积是local_max,最小积是local_min， 那么加入Nums[i]后，该怎么变化呢？很明显，必须要以nums[i]结尾， local_max是nums[i],local_max*nums[i], local_min*nums[i]三个中最大的，当出现负数*负数的时候，可能会有local_min*nums[i]。同时local_min也必须包含nums[i]，因此，local_min是nums[i],local_min*nums[i],local_max*nums[i]中最小的。注意循环开始时要备份local_max,以在求local_min时用到。
+
 155_Easy: Min Stack. 要求栈返回一个最小元素，并且push,pop,min都必须是O(1)的。据说是谷歌的面试题。要用两个栈，一个存数据，另一个存最小当前最小的值，每次push数据时，如果当前值比minStack的peek小时才压进去；pop时，从Stackpop出来的数据如果和minStack的peek相等，则popminStack。
 
 164_Hard: Maximum Gap。求无序数组有序顺序中，最大相邻间隔，要求O(n) time 和 O(n) space。用treeMap可以做，但是效率低。标准答案用桶排序，首先找出数组中的min和max。则有个公式：最大maxGap不会小于(max-min)/(nums.length-1)向上取整。因此，桶的长度为(max-min)/(nums.length-1)向上取整，这样，排序后在一个桶中的元素不用相互之间在比较了，因为它们的差值肯定小于桶长度，不会是我们需要求的，对于每一个桶，只需存放在桶了最大和最小的值，然后计算相邻桶中（前一个桶的max和后一个桶min）即可。
