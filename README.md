@@ -553,6 +553,21 @@ X O X X
 
 152_Medium: Maximum Product Subarray. 给定一个数组，求有最大积的连续子数组。思路：要用动态规划的思想。初始最大值设为nums[0],i从1遍历到n，当遍历到i时，则以nums[i-1]结尾的子数组的最大积是local_max,最小积是local_min， 那么加入Nums[i]后，该怎么变化呢？很明显，必须要以nums[i]结尾， local_max是nums[i],local_max*nums[i], local_min*nums[i]三个中最大的，当出现负数*负数的时候，可能会有local_min*nums[i]。同时local_min也必须包含nums[i]，因此，local_min是nums[i],local_min*nums[i],local_max*nums[i]中最小的。注意循环开始时要备份local_max,以在求local_min时用到。
 
+153_Medium:	Find Minimum in Rotated Sorted Array. 一个已排序的数组旋转了，假设元素没有重复的，找到它的最小值。思路：用二分查找，如果nums[i] < nums[j]，说明该范围内已经是有序的了，返回nums[i],否则，计算出mid，如果nums[mid]比nums[i]大，则令i=mid+1继续搜索，如果nums[mid]<nums[j],则令j=mid 继续搜索，mid可能是最小值。
+
+154_Hard: Find Minimum in Rotated Sorted Array II. 承接上题，如果数组中有重复的元素，旋转后如何查找最小的元素。思路：这题需要画图理解的，和上题差不多，如果nums[i] < nums[j],则搜索区间最小的毫无疑问是nums[i],如果nums[i]>nums[j],还是和上题一样。如果nums[i]==nums[j]，情况就不一样了，算出mid后，当nums[mid]>nums[i]或nums[mid]<nums[j]和前面的情况一样，当nums[i]==nums[mid]==nums[j]时，最小值可能在i和mid之间，也可能在mid和j之间，所以只能i++.
+
+160_Easy: Intersection of Two Linked Lists. 返回两个链表相交的第一个元素，不相交则返回null。一开始同时遍历，当一个指针遍历到头后，开始计数，直到它到尾巴为止，计为count.让长的指针先走count个，然后短的从开头走，第一次相遇的位置就是第一个相交的节点。
+
+162_Medium:	Find Peak Element. 给定一个数组，找到一个"局部最大值"，它的值比相邻的值大。假设一定存在。思路：二分查找的变种，选择中间的mid,比较nums[mid]和nums[mid+1]，当nums[mid]>nums[mid+1]时，[i..mid]必存在局部最大值；nums[mid]<nums[mid+1]，[mid+1..j]必存在局部最大值。分析如下：
+
+    1. 这里之所以选择只进行中间元素mid跟其相邻后续元素mid+1的大小讨论，而不涉及前一个元素mid-1，主要是方便。mid=(left+right)/2, 这个除法有一个floor效果在里面，即?(left+right)/2?。这样导致left和right不等时，index为mid和mid+1都存在，但是mid-1有可能小于0。这样每次当mid==0时，mid-1的元素都得特别讨论，麻烦。举个例子，比如left==0, right==1, mid==0, mid-1==-1, mid+1==1，不想讨论mid-1这种情况
+    2. 如果中间元素大于其相邻后续元素，说明中间元素左侧(包含该中间元素）必包含一个局部最大值，这时候中间元素是可能是局部最大点的，所以移动r = mid而不是r = mid-1; 而如果中间元素小于其相邻后续元素，则中间元素右侧必包含一个局部最大值。这时中间元素肯定不会是局部最大点，所以移动l = mid + 1
+    3. 之所以要用左右边沿相遇作为找到条件，主要也是不想涉及到mid-1的问题。否则条件是num[mid]>num[mid+1] && num[mid]>num[mid-1]又要分情况mid==0了
+    4. 如果mid是一个valley, 比如[1, 2, 1, 6, 7], 这时候不知道该往哪边跳？这时候其实往左往右跳都可以。随便指定一个方向都可以，要么往左找到2，要么往右找到7（根据定义它也是peak value）。 因为只用找出一个，所以还是O(logN)
+    
+164_Medium: Maximum Gap. 给定一个无序数组，要求找出排序之后相邻元素间隔差最大的值。思路：桶排序。先遍历一遍找到最大最小元素，max和min.则桶的大小是(max-min)/(n-1),这个桶的意义在于所求的最大值一定比这个桶大小要大，因为如果元素平均分布在max-min上时，
+
 155_Easy: Min Stack. 要求栈返回一个最小元素，并且push,pop,min都必须是O(1)的。据说是谷歌的面试题。要用两个栈，一个存数据，另一个存最小当前最小的值，每次push数据时，如果当前值比minStack的peek小时才压进去；pop时，从Stackpop出来的数据如果和minStack的peek相等，则popminStack。
 
 164_Hard: Maximum Gap。求无序数组有序顺序中，最大相邻间隔，要求O(n) time 和 O(n) space。用treeMap可以做，但是效率低。标准答案用桶排序，首先找出数组中的min和max。则有个公式：最大maxGap不会小于(max-min)/(nums.length-1)向上取整。因此，桶的长度为(max-min)/(nums.length-1)向上取整，这样，排序后在一个桶中的元素不用相互之间在比较了，因为它们的差值肯定小于桶长度，不会是我们需要求的，对于每一个桶，只需存放在桶了最大和最小的值，然后计算相邻桶中（前一个桶的max和后一个桶min）即可。
