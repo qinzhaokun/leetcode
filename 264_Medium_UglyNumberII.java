@@ -92,3 +92,28 @@ public class Solution {
         return u;
     }
 }
+
+public class Solution {
+    public int nthUglyNumber(int n) {
+        if(n == 1) return 1;
+        int [] re = new int [n];
+        int p2 = 0;int p3 = 0;int p5 = 0;
+        re[0] = 1;
+        for(int i = 1;i < n;i++){
+            re[i] = MIN(re[p2]*2,re[p3]*3,re[p5]*5);
+            while(re[p2]*2 <= re[i]) p2++;
+            while(re[p3]*3 <= re[i]) p3++;
+            while(re[p5]*5 <= re[i]) p5++;
+        }
+        return re[n-1];
+    }
+    
+    int MIN(int a, int b, int c){
+        if(a < b){
+            return a < c ? a : c;
+        }
+        else{
+            return b < c ? b : c;
+        }
+    }
+}
