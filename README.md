@@ -557,6 +557,8 @@ X O X X
 
 154_Hard: Find Minimum in Rotated Sorted Array II. 承接上题，如果数组中有重复的元素，旋转后如何查找最小的元素。思路：这题需要画图理解的，和上题差不多，如果nums[i] < nums[j],则搜索区间最小的毫无疑问是nums[i],如果nums[i]>nums[j],还是和上题一样。如果nums[i]==nums[j]，情况就不一样了，算出mid后，当nums[mid]>nums[i]或nums[mid]<nums[j]和前面的情况一样，当nums[i]==nums[mid]==nums[j]时，最小值可能在i和mid之间，也可能在mid和j之间，所以只能i++.
 
+155_Easy: Min Stack. 要求栈返回一个最小元素，并且push,pop,min都必须是O(1)的。据说是谷歌的面试题。要用两个栈，一个存数据，另一个存最小当前最小的值，每次push数据时，如果当前值比minStack的peek小时才压进去；pop时，从Stackpop出来的数据如果和minStack的peek相等，则popminStack。
+
 160_Easy: Intersection of Two Linked Lists. 返回两个链表相交的第一个元素，不相交则返回null。一开始同时遍历，当一个指针遍历到头后，开始计数，直到它到尾巴为止，计为count.让长的指针先走count个，然后短的从开头走，第一次相遇的位置就是第一个相交的节点。
 
 162_Medium:	Find Peak Element. 给定一个数组，找到一个"局部最大值"，它的值比相邻的值大。假设一定存在。思路：二分查找的变种，选择中间的mid,比较nums[mid]和nums[mid+1]，当nums[mid]>nums[mid+1]时，[i..mid]必存在局部最大值；nums[mid]<nums[mid+1]，[mid+1..j]必存在局部最大值。分析如下：
@@ -568,9 +570,19 @@ X O X X
     
 164_Medium: Maximum Gap. 给定一个无序数组，要求找出排序之后相邻元素间隔差最大的值。思路：桶排序。先遍历一遍找到最大最小元素，max和min.则桶的大小是(max-min)/(n-1),这个桶的意义在于所求的最大值一定比这个桶大小要大，因为如果元素平均分布在max-min上时，
 
-155_Easy: Min Stack. 要求栈返回一个最小元素，并且push,pop,min都必须是O(1)的。据说是谷歌的面试题。要用两个栈，一个存数据，另一个存最小当前最小的值，每次push数据时，如果当前值比minStack的peek小时才压进去；pop时，从Stackpop出来的数据如果和minStack的peek相等，则popminStack。
-
 164_Hard: Maximum Gap。求无序数组有序顺序中，最大相邻间隔，要求O(n) time 和 O(n) space。用treeMap可以做，但是效率低。标准答案用桶排序，首先找出数组中的min和max。则有个公式：最大maxGap不会小于(max-min)/(nums.length-1)向上取整。因此，桶的长度为(max-min)/(nums.length-1)向上取整，这样，排序后在一个桶中的元素不用相互之间在比较了，因为它们的差值肯定小于桶长度，不会是我们需要求的，对于每一个桶，只需存放在桶了最大和最小的值，然后计算相邻桶中（前一个桶的max和后一个桶min）即可。
+
+165_Easy: Compare Version Numbers. 比较两个版本的大小。思路：用split分割字符串，注意要用转义字符s.split("//.")。然后把每一段转化成int比较
+
+166_Medium: Fraction to Recurring Decimal. 一个数除以另一个数，返回结果的字符串表示，如果有无限循环的部分，用括号包起来，e.g. (xxx).思路：这题还是很值得思考的，建议有空再做一遍，一开始先把除数和被除数弄成正数，并且转成long, 建立哈希表，把余数和在结果字符串的位置作为<key,value>对存起来,在后续操作中如果出现相同的余数，则终止继续计算，把左括号插到之前那个余数那，右括号插入到最后。
+
+168_Easy: Excel Sheet Column Title. excel对应，1->A, 2->B... 26->Z, 27->AA....思路：要从最后一位开始找，先让n--, 在n%26的到最后一位，然后再n=n/26继续操作。
+
+169_Easy: Majority Element. 一个数组中出现出现超过一半的元素，假设一定存在。思路:基于同时去掉数组中两个不相同的元素，所求值不变的原理。
+
+171_Easy: Excel Sheet Column Number. 和168对应，给出字符串，找到对应的数字。A->1...AA->27. 思路：从最后一位开始计算，re = 26*re+s.charAt(j)-'A'+1.
+
+172_Easy: Factorial Trailing Zeroes. 给定一个数n，问n!的阶乘有多少个0.思路：1*2*3*...*n，只有2*5这样的因子才能组成0，一个2和一个5得到1个0.而这些因子当中，5的个数肯定比2少，因此，统计包含5的因子即可。5,10,15,20,25,30....-> 1*5,2*5,3*5,4*5,5*5,6*5...都包含5,其中5包含2个，方法就是用count += n/5,的后一位5的个数,然后又有1,2,3,4,5,...,n/5，再继续count += n/5，直到 n == 0. 
 
 174_Hard: Dungeon Game。给一个二维数组，数组有正有负，要求找一条路径从左上走到右下，走的过程中生命值得和不能小于等于0，找出最小初始生命值。一开始觉得挺简单，简单dp：
 
