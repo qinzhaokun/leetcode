@@ -664,6 +664,9 @@ X O X X
 
 221_Medium: Maximal Square. 给定一个0,1矩阵，求最大的全是1的方正。思路：动态规划：dp[i][j] = min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])+1, 当(i,j)是1时。自己的方法可以参考代码。
 
+222_Medium: Count Complete Tree Nodes. 统计一棵完全二叉树的节点数。全部遍历会超时，要利用完全二叉树的性质。从root开始，统计root.left->root.left一共有几个，再统计root.right->root.right一共有几个，如果相等，则是对称的满的完全二叉树，数量是2^(n-1)-1个节点，用2<<(n-1) - 1表示。否则递归计算：1+countNode(root.left)+countNode(root.right)
+
+223_Easy: Rectangle Area. 两个矩形，求公共面积。
 
 230_Medium: 求BST中第K个元素，用dfs中序遍历，搜到之后立刻return节约时间。
 
