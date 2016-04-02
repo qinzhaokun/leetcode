@@ -624,7 +624,46 @@ X O X X
 
 思路：dfs遍历统计。
 
+201_Medium: Bitwise AND of Numbers Range. 给定两个数，m和n，把[m,n]之间所有的数字按位与，返回得到的结果。思路:这样想，只有要一位是0，那么某一位上的数字就是0.如果两个数不相等，则最后一位是0，这是我们同时右移m和n一位，得到新的m和n，同样的判断，直到m和n相等。记住右移了count位，然后再把m左移count即可。
+
+202_Easy: Happy Number. 开心的数，给定一个数，如：81， 每个位平方相加得到新的数，如8^2+1^2=65, 在继续往下，如果最后能得到1，则是开心的数。思路：按照题意一步步循环计算得出新的数，用hashset存着出现过的数，如果重复出现，则返回false。
+
+203_Easy: Remove Linked List Elements. 移除链表中指定数的节点。思路：还是用一个新建一个head在前面，以防止移除原来链表头部带来的麻烦的指针操作。然后遍历链表移除即可。
+
+204_Easy: Count Primes. 给定n，返回小于n的质数的个数。思路：新建一个arr[n+1], arr[i]==false表示i是质数。并设置第一个质数1是arr[1]=true;然后往后循环，当发现一个质数时，比如i,则从i*i开始，设置arr[i*i]=true;接着i*i+i..直到n。这里为啥是从i*i开始呢，一般可以从i*2,i*3,i*4...i*i。但是前面的都是重复的，因为当小于i时的循环，比如i=3，已经设置过arr[i*3]了。
+
+205_Easy: Isomorphic Strings. 两个字符串，判断元素是否一一对应。("egg", "add" -> true) ("foo", "bar" -> false) 这题还弄了好久，有点不好理解。思路：hash表，用两个数组模拟hash表，一开始两个数组所有的都是0. 同时遍历两个字符串，如果发现map1[s1] != map2[s2], 在返回false，否则设置map1[s1]=map2[s2] = i+1, 表示map1中的某个字符和map2中的某个字符已经关联，关联的key要是非0的数，如果在后续中出现了s1,则在对应的s2中一定是那个数。
+
+206_Easy: Reverse Linked List. 反转一个链表。
+
+207_Medium: Course Schedule. 给定一系列的课程顺序，问能够按照这个顺序上完。思路:基于BFS的拓扑排序。
+
+208_Medium: Implement Trie (Prefix Tree). 实现一颗字典树。支持insert, serach, startwith三个操作。思路：每个节点都有一个长度为26的数组表示它的儿子节点，并用一个boolean edge表示它是否是某个字符串的终点。
+
+209_Medium: Minimum Size Subarray Sum. 给定一个数组和一个数n，求最短的连续元素和是>=n的，返回最短的长度。思路：用双指针，一开始固定j在0，i向前找到第一个和大于n的位置，记录长度，然后j向前移直到和小于n，期间同时记录长度，然后i继续右移，如此往复。时间复杂度是O(n).
+
+210_Medium: Course Schedule II. 承接207，返回任意一组可行的课程安排顺序。思路：拓扑排序。
+
+212_Hard: Word Search II. 给定一个字符串数组，和一个由字符组成的矩阵，问那些字符串在这个字符矩阵中出现过。“出现过”的意思是从某个字符出发，上下左右的走能连在一起（不能重复走某个位置）。思路：这里要用到字典树，用给定的字符串数组构建字典树，然后在字符矩阵中dfs搜索，如果搜到edge==true时表示存在。
+
+213_Medium:. House Robber II. 强盗抢劫，n个房子首尾相连，不能同时抢相邻的房子，求最大抢劫总价值。思路：已经知道如何求首尾不相连的了，则不抢第一家，求一个值，再不抢最后一家，求一个值，返回两个值中最大的。
+
+214_Hard: Shortest Palindrome. 给定一个字符串，要求在前面添加最少的若干个字符串，使得整个字符串是回文。思路：从原始字符串中间开始找，想两边扩散，直到找到一个s.substring(0,i)是回文，如果实在没有，就是第一个字符组成回文，然后把s.substring(i,n)反转添加到前面。还有更快的方法，有空研究。
+
 214_Hard: 给一个字符串，在前面加上一个最短的字符串，使得生成的字符串是回文的。问题转化为求原字符串s.substring(0,i)是回文，i要最大。然后把s.substring(i+1,n)反转加到前面即可。注意，用传统的动态规划会出现memory limit，要用确定一个中心，然后往两边延伸，发现是回文后立即处理返回。用KMP算法会更好，但是还没有研究过。
+
+215_Medium: Kth Largest Element in an Array. 数组中第K大的元素。思路：快速排序的思想。以第一个元素为主元，后面元素分成两部分。如果大于主元的元素正好有k-1个，则返回主元，否则根据条件选择向某个方向搜索。
+
+216_Medium: Combination Sum III. 给定k，和n，要求在1-9中找到k个数，他们的和是n。思路：dfs搜索
+
+217_Easy: Contains Duplicate. 给定数组，判断是否包含重复的元素。思路：hashset或hashmap。
+
+219_Easy: Contains Duplicate II. 给定一个数组和一个k，问是否存在nums[i]==nums[j], 使得j-i小于等于k。思路：简单的hashmap应用，当来了一个数时，如果在hashmap中找得到的话，就把value拿出来，用j-value看看是不是小于k。然后无论map里有没有nums[i],都插入<nums[i],i>进map里。
+
+220_Medium: Contains Duplicate III. 给定一个数组，t和k，问是否存在两个元素nums[i],nums[j], 使得nums[i]-nums[j]的绝对值不超过t，i和j的绝对值不超过k。思路：经典的桶排序应用。设置桶的大小是t+1，则当一个元素nums[i]进来后，其桶位置是index，这是只要查询index-1的桶和index+1的桶就行了。分析完了看看实现。用一个hashmap，<key,value>对是<index,nums[i]>, 每当遍历一个元素nums[i]时，计算它的 index=(nums[i]-Integer.MIN_VALUE)/(t+1), 查看index这个桶里是否有元素，有的话就返回true，同时查看index-1,如果有元素，肯定只有一个在桶里，因为大于2个再同一个桶里早就返回true了，就取出来和nums[i]比较看是否小于等于t。同理对index+1的桶操作。再把<index,nums[i]>放在map里。到这里为止，只是看元素有没有相差超过t而已。对于i，map里面要保存的是i之前的k个元素。因此当i>=k时，要map.remove(key)，其中key=(nums[i-k]-Integer.MIN_VALUE)/(t+1)
+
+221_Medium: Maximal Square. 给定一个0,1矩阵，求最大的全是1的方正。思路：动态规划：dp[i][j] = min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])+1, 当(i,j)是1时。自己的方法可以参考代码。
+
 
 230_Medium: 求BST中第K个元素，用dfs中序遍历，搜到之后立刻return节约时间。
 
