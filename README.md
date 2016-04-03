@@ -666,7 +666,19 @@ X O X X
 
 222_Medium: Count Complete Tree Nodes. 统计一棵完全二叉树的节点数。全部遍历会超时，要利用完全二叉树的性质。从root开始，统计root.left->root.left一共有几个，再统计root.right->root.right一共有几个，如果相等，则是对称的满的完全二叉树，数量是2^(n-1)-1个节点，用2<<(n-1) - 1表示。否则递归计算：1+countNode(root.left)+countNode(root.right)
 
-223_Easy: Rectangle Area. 两个矩形，求公共面积。
+223_Easy: Rectangle Area. 两个矩形，求z总面积和。思路：求公共部分，然后两块面积相加减去公共部分。
+
+224_Medium: Basic Calculator. 基本的计算器，只有 +，-，(，),"(1+(4+5+2)-3)+(6+8)" = 23 思路：利用stack。
+
+225_Easy: Implement Stack using Queues. 用队列实现栈。思路：两个队列，和一个top的元素。push操作：插入队列尾部，跟新top。pop操作：把队列导入辅助队列，并返回最后一个元素，设置倒数第二个元素是top，再重新倒回去。top操作，返回top。
+
+226_Easy: Invert Binary Tree. 按左右对称结果翻转一棵树。思路：递归翻转。
+
+227_Medium: Basic Calculator II.基本计算器，只包含+,-,*,/，数字。思路：stack， 进栈的时候先把 *和/做了，然后最后再把+,-做了。
+
+228_. Summary Ranges. 给定排序数组，统计数的范围。[0,1,2,4,5,7], return ["0->2","4->5","7"].思路：比较简单
+
+229_Medium: Majority Element II,给定一个数组，找出数组中出现超过n/3的所有数字。思路：分析，最多只有两个数字。因此设置两个标志，如果和他们都不同的则同时抛弃，根据原理，同时扔掉三个不同的数，结果不变。记得当countOne == 0 && countTwo > 0 时，要交换one和two，因为遍历的时候是先判断one在判断two，这样能够防止one和two是同一个数的情况。最后选出两个候选的数，再统计候选的数看他们是否符合要求，符合要求则加入re中。
 
 230_Medium: 求BST中第K个元素，用dfs中序遍历，搜到之后立刻return节约时间。
 
