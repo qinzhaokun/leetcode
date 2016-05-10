@@ -64,6 +64,38 @@ sleep(), 不释放锁
 
 与内置条件队列不同的是，对于每个Lock，可以有任意数量的Condition对象。Condition对象继承了相关的Lock对象的公平性，对于公平的锁，线程会依照FIFO顺序从Condition.await中释放。
 
+这次说一下 JUC 中的同步器三个主要的成员：CountDownLatch、CyclicBarrier 和 Semaphore（不知道有没有初学者觉得这三个的名字不太好记）。这三个是 JUC 中较为常用的同步器，通过它们可以方便地实现很多线程之间协作的功能。（下面的代码出自 JDK 文档）
+
+CountDownLatch
+
+直译过来就是倒计数(CountDown)门闩(Latch)。倒计数不用说，门闩的意思顾名思义就是阻止前进。在这里就是指 CountDownLatch.await() 方法在倒计数为0之前会阻塞当前线程。
+
+作用
+
+CountDownLatch 的作用和 Thread.join() 方法类似，可用于一组线程和另外一组线程的协作。例如，主线程在做一项工作之前需要一系列的准备工作，只有这些准备工作都完成，主线程才能继续它的工作。这些准备工作彼此独立，所以可以并发执行以提高速度。在这个场景下就可以使用 CountDownLatch 协调线程之间的调度了。在直接创建线程的年代（Java 5.0 之前），我们可以使用 Thread.join()。在 JUC 出现后，因为线程池中的线程不能直接被引用，所以就必须使用 CountDownLatch 了。
+
+CyclicBarrier
+
+CyclicBarrier 翻译过来叫循环栅栏、循环障碍什么的（还是有点别扭的。所以还是别翻译了，只可意会不可言传啊）。它主要的方法就是一个：await()。await() 方法没被调用一次，计数便会减少1，并阻塞住当前线程。当计数减至0时，阻塞解除，所有在此 CyclicBarrier 上面阻塞的线程开始运行。在这之后，如果再次调用 await() 方法，计数就又会变成 N-1，新一轮重新开始，这便是 Cyclic 的含义所在。
+
+CyclicBarrier 的使用并不难，但需要主要它所相关的异常。除了常见的异常，CyclicBarrier.await() 方法会抛出一个独有的 BrokenBarrierException。这个异常发生在当某个线程在等待本 CyclicBarrier 时被中断或超时或被重置时，其它同样在这个 CyclicBarrier 上等待的线程便会受到 BrokenBarrierException。意思就是说，同志们，别等了，有个小伙伴已经挂了，咱们如果继续等有可能会一直等下去，所有各回各家吧。
+
+CyclicBarrier.await() 方法带有返回值，用来表示当前线程是第几个到达这个 Barrier 的线程。
+
+和 CountDownLatch 一样，CyclicBarrier 同样可以可以在构造函数中设定总计数值。与 CountDownLatch 不同的是，CyclicBarrier 的构造函数还可以接受一个 Runnable，会在 CyclicBarrier 被释放时执行。
+
+CyclicBarrier 和 CountDownLatch 在用法上的不同
+
+CountDownLatch 适用于一组线程和另一个主线程之间的工作协作。一个主线程等待一组工作线程的任务完毕才继续它的执行是使用 CountDownLatch 的主要场景；CyclicBarrier 用于一组或几组线程，比如一组线程需要在一个时间点上达成一致，例如同时开始一个工作。另外，CyclicBarrier 的循环特性和构造函数所接受的 Runnable 参数也是 CountDownLatch 所不具备的。
+
+Semaphore
+
+Semaphore 直译是信号量，可能称它是许可量更容易理解。当然，因为在计算机科学中这个名字由来已久，所以不能乱改。它的功能比较好理解，就是通过构造函数设定一个数量的许可，然后通过 acquire 方法获得许可，release 方法释放许可。它还有 tryAcquire 和 acquireUninterruptibly 方法，可以根据自己的需要选择
+
+最后一句话总结
+
+CountDownLatch 是能使一组线程等另一组线程都跑完了再继续跑；CyclicBarrier 能够使一组线程在一个时间点上达到同步，可以是一起开始执行全部任务或者一部分任务。同时，它是可以循环使用的；Semaphore 是只允许一定数量的线程同时执行一段任务。
+
 虚拟机类加载机制：
 
 虚拟机把描述类的数据从class文件加载到内存，并对数据进行校验，转换解析和初始化，最终形成可被虚拟机直接使用的java类型。
