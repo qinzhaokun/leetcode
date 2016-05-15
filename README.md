@@ -855,4 +855,6 @@ sellDp[n - 1] 表示最后一天结束时手里没股票时的累积最大利润
 
 328_Medium: Odd Even Linked List. 给一个链表，转化为偶数位的相连，奇数位的相连，奇数位在偶数位后面。思路：简单的链表操作。
 
+329_Hard: Longest Increasing Path in a Matrix. 给一个矩阵，找到最长的递增路径，返回最长的长度。思路：典型的dfs每个元素仅被访问一次，用一个int [][] 的数组来缓存结果。 
+
 
