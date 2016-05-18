@@ -863,4 +863,8 @@ sellDp[n - 1] 表示最后一天结束时手里没股票时的累积最大利润
 
 345_Easy. Reverse Vowels of a String. 反转字符串里的元音字母。思路：把String变成CharArray，然后逐一反转。
 
+347_Medium: Top K Frequent Elements. 给定一个数组，统计出出现最多的k个数字，要求比O(nlogn)快。思路：用hashmap统计每个数字出现的次数，然后遍历把map变成数组，找到最大的k个数，这时很自然的想到n个数找最大的k个，用平均复杂度是O(n)的快排思想做，但事实证明虽然可行但是很慢。这里有更快的O(n)的方法，假设原始数组的长度为n，则出现最多的出现次数是n（全部是同一个数），最少是1，只有一个。因此桶排序。设长度为n的桶，a[j]存储出现j+1次的数字，用list表示，然后从n-1 -> 0 遍历，直到找到k个元素为止。
+
+349_Easy: Intersection of Two Arrays. 求两个数组共有的元素。思路：利用hashset，一个数组存进set，另一个数组remove set中的元素。
+
 
