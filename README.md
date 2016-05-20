@@ -863,6 +863,8 @@ sellDp[n - 1] 表示最后一天结束时手里没股票时的累积最大利润
 
 332_Medium: Reconstruct Itinerary. 给定一些飞机票，让你从中找出一个序列可以全部用完。要求如下从JFK出发。如果有多个解，输出字典序最小的。思路：这题是非常精妙的，至今还没想太明白，不过是个很好的题。所有机票构成一个有向图，要求把图中所有的边遍历一遍，一定能够遍历完，如果有多组遍历方式，要求字典序最小。用map的key存着所有的出发点，value存着改点所能都到达的目的地，用PriorityQueue存储。从JFK出发，进行dfs，每次先遍历字典序小的机场，遍历完该节点后，把该节点存进list中。最后反转list就是最终的结果。想想为什么？？
 
+341_Medium: Flatten Nested List Iterator. 给一个list，里面的元素可以是一个integer或者又是一个list，要求写一个iterator遍历它，实现next()和hasNest()方法。思路：自己的思路就是模仿list的iterator来写，但是遇到超级多坑。首先是用i表示遍历到的元素下标，inList表示当前是否在子的list里，ite表示子list的iterator。在hasNext有很多坑，比如[[],1]这样，要递归的判断下一个等。标准答案用的是stack，十分聪明，从后往前入栈。hasNext时，就拿出第一个，如果是integer，就马上返回true，否则，把这个list从后往前元素依次入栈，知道栈是空，则返回false。这样，next直接取栈顶元素返回就好了。不过我自己的想的方法是10ms，而用栈是12ms。
+
 345_Easy. Reverse Vowels of a String. 反转字符串里的元音字母。思路：把String变成CharArray，然后逐一反转。
 
 347_Medium: Top K Frequent Elements. 给定一个数组，统计出出现最多的k个数字，要求比O(nlogn)快。思路：用hashmap统计每个数字出现的次数，然后遍历把map变成数组，找到最大的k个数，这时很自然的想到n个数找最大的k个，用平均复杂度是O(n)的快排思想做，但事实证明虽然可行但是很慢。这里有更快的O(n)的方法，假设原始数组的长度为n，则出现最多的出现次数是n（全部是同一个数），最少是1，只有一个。因此桶排序。设长度为n的桶，a[j]存储出现j+1次的数字，用list表示，然后从n-1 -> 0 遍历，直到找到k个元素为止。
