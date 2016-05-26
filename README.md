@@ -871,4 +871,5 @@ sellDp[n - 1] 表示最后一天结束时手里没股票时的累积最大利润
 
 349_Easy: Intersection of Two Arrays. 求两个数组共有的元素。思路：利用hashset，一个数组存进set，另一个数组remove set中的元素。
 
+350_Easy: Intersection of Two Arrays II. 和上一题类似，求两个数组共有的元素，可以重复。HashSet变成HashMap
 
