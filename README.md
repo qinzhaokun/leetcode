@@ -901,4 +901,6 @@ sellDp[n - 1] 表示最后一天结束时手里没股票时的累积最大利润
 
 378_Medium: Kth Smallest Element in a Sorted Matrix. 给定一个矩阵，每一行和每一列都是递增的。求出矩阵的第k小的元素。解答：利用优先队列，求先把每一行的第一个元素都放进队列，然后每次取出最小的元素，把它所在行的比它后一位的元素放进队列中，直至取出第k个为止。
 
+380_Medium: Insert Delete GetRandom O(1). 实现一种数据结构，插入，删除和随机返回的复杂度是1。解答：如果只有插入和删除，那么hashMap可以实现，但是hashMap不能随机返回一个值，并且每个值都有相同的概率。因此，要多加一个数据结构。原有的hashMap<Integer,Integer>,key是值，value是插入的序号，list<Integer>是集合里的所有值，那么现在插入操作没有问题，如何处理删除呢？在hashMap里删除没问题，在list里删除呢？首先通过找到map找到val的序号，那么即可在list中定位这个值，list.get(map.get(val)) == val, 在list中删除val，为了实现O(1)，考虑把list的最后一个值赋到这个这个位置，然后index--即可.到这里还没有结束！由于list中的最后一个值的序列变了，要在map中更新回来。注意，当删除的是最后一个元素时，不用更新。
+
 
