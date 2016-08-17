@@ -543,6 +543,8 @@ X O X X
 
 145_Hard: Binary Tree Postorder Traversal.二叉树后序遍历，居然是hard。
 
+146_Hard: LRU Cache. 用双向链表+hashmap，比较经典的算法。
+
 147_Medium: Insertion Sort List. 链表的插入排序。思路：简单实现链表操作。
 
 148_Medium: Sort List. 考察链表的归并排序。思路：用快慢指针找到中间节点，这里要注意如果是这有两个节点的情况slow最后应该指向第一个元素，否则会死循环.
