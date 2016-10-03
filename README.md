@@ -541,7 +541,7 @@ X O X X
 
 144_Medium:	Binary Tree Preorder Traversal. 二叉树先序遍历。
 
-145_Hard: Binary Tree Postorder Traversal.二叉树后序遍历，居然是hard。
+145_Hard: Binary Tree Postorder Traversal.二叉树后序遍历，居然是hard。是hard因为这题要求非递归去遍历。思路比较男乡，利用栈，首先把root压进栈中，每次取到栈的首元素，如果是叶子节电，访问出栈，如果左左子节点非空并且上一个被访问的是它，或者右子节点非空且上一个被访问的是它，则同样的访问出栈，否则，以该节点的所有孩子并没有访问完，依次把起右孩子和左孩子压入栈中。
 
 146_Hard: LRU Cache. 用双向链表+hashmap，比较经典的算法。
 
